@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var AWS = require('aws-sdk');
+AWS.config.update({region: 'us-west-2'});
 
 var conn = mysql.createConnection({
   	host     : process.env.RDS_HOSTNAME || 'localhost',
@@ -37,52 +39,15 @@ router.post('/mysql', function(req, res){
     }
 });
 
-router.get('/book', function(req, res){
-    res.render('u/book');
-});
-
-router.post('/book', function(req, res){
-    
-});
-
-router.post('/u', function(req, res){
-    key = req.body.key;
-    if (key === 'idp2015-16-$3cr37-k3y') {
-        res.render('users/addbook');
-    } else {
-        res.send('Invalid security key.');
+var s3 = new AWS.S3();
+s3.listBuckets(function(err, data) {
+  if (err) { console.log("Error:", err); }
+  else {
+    for (var index in data.Buckets) {
+      var bucket = data.Buckets[index];
+      console.log("Bucket: ", bucket.Name, ' : ', bucket.CreationDate);
     }
+  }
 });
-router.post('/addbook', function(req, res){
-    var key = req.body.key;
-    if (key === 'idp2015-16-$3cr37-k3y') {
-        var id = req.body.id.toUpperCase();
-        var name = req.body.name;
-        var author = req.body.author;
-        var course = req.body.course;
-        var description = req.body.description;
-        var url = req.body.url;
-        var pic = req.body.pic;
-        var user = req.body.user;
-        //var pic = req.file;
-        if (id === '' || name === '' || url === '') res.send('Compulsory fields are empty.');
-        else {
-            conn.query('insert into books values (?, ?, ?, ?, ?, ?, ?, ?)', [id, name, author, course, description, url, pic, user], function(err, rows, fields){
-                if (err) {
-                    console.log(err)
-                    res.send('Error occurred.')
-                }
-                else res.send('Successfully added a book.')
-            })
-        }
-    } else {
-        res.send('Invalid security key. Enter correct key.');
-    }
-});
-
-
-
-
-
 
 module.exports = router;

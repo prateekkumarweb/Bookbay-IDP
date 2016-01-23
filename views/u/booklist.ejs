@@ -11,6 +11,7 @@
         <th>name</th>
         <th>author and edition</th>
         <th>description</th>
+        <th>course</th>
         <th>url</th>
         <th>pic</th>
         <th>User Who Added</th>
@@ -18,14 +19,15 @@
       </tr>
     <% for (var i=0; i<books.length; i++) { %>
       <tr>
-        <td><%= books[i].id%></td>
-        <td><%= books[i].name%></td>
-        <td><%= books[i].author%></td>
-        <td><%= books[i].description%></td>
-        <td><a href="<%= books[i].url%>" target="_blank" title="<%= books[i].url%>">Click here</a></td>
-        <td><a href="<%= books[i].pic%>" target="_blank" title="<%= books[i].url%>">Click here</a></td>
+        <td><%= books[i].id %></td>
+        <td><%= books[i].name %></td>
+        <td><%= books[i].author %></td>
+        <td><%= books[i].description %></td>
+        <td><%= books[i].course %></td>
+        <td><a href="<%= books[i].url %>" target="_blank" title="<%= books[i].url %>">Click here</a></td>
+        <td><a href="<%= books[i].pic %>" target="_blank" title="<%= books[i].url %>">Click here</a></td>
         <td><%= books[i].userWhoAdded%></td>
-        <td><a href="/u/updatebook?id=<%= books[i].id%>">Update book</a></td>
+        <td><a href="/u/updatebook?id=<%= books[i].id %>">Update book</a></td>
       </tr>
     <% } %>
     <table>

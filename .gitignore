@@ -2,6 +2,7 @@ node_modules/
 .elasticbeanstalk/
 .DS_Store
 idpappdev/
+.gitignore
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

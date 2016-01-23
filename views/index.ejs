@@ -282,9 +282,10 @@ $(document).ready(function(){
         else list+='<li><a href="/search?q='+encodeURIComponent("<%= q %>")+'&page='+(i/10)+'">'+((i/10)+1)+'</a></li>';
     }
     list+='</ul>';
-    if (page <= ((totalbooks-1)/10)-1) list+='<ul class="pagination">li><a href="/search?q='+encodeURIComponent("<%= q %>")+'&page='+(page+1)+'" style="background-color: #337ab7;color:white;border-color:#337ab7;">Next</a></li></ul>';
+    if (page <= ((totalbooks-1)/10)-1) list+='<ul class="pagination"><li><a href="/search?q='+encodeURIComponent("<%= q %>")+'&page='+(page+1)+'" style="background-color: #337ab7;color:white;border-color:#337ab7;">Next</a></li></ul>';
     list+='</div></div>';
     $(".paginationdiv").html(list);
+    $("#searchquery0").value("<%= q %>");
 });
 </script>
 <% } %>

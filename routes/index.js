@@ -39,7 +39,7 @@ var conn = mysql.createConnection({
   	host     : process.env.RDS_HOSTNAME || 'localhost',
   	user     : process.env.RDS_USERNAME || 'root',
   	password : process.env.RDS_PASSWORD || 'pk-mysql-db',
- 	  port     : process.env.RDS_PORT || '3306',
+ 	port     : process.env.RDS_PORT || '3306',
     database : 'idp'
 });
 conn.connect(function(err){
@@ -126,10 +126,10 @@ router.get('/search', function(req, res) {
           } else var page=0;
           var l = rows.length;
           var re = [];
-          for (i=10*page; i<Math.min(rows.length, (page*10+10)); i++) {
+          for (i=10*page; i<Math.min(l, (page*10+10)); i++) {
               re.push(rows[i]);
           }
-          res.render('index', {type: 'search', signedIn: st, user: u, q: q, data: re});
+          res.render('index', {type: 'search', signedIn: st, user: u, q: q, data: re, page: [l, page]});
         });
     });
 });

@@ -696,7 +696,7 @@ router.post('/addbook', function(req, res){
               console.log(err);
               res.send('Book could not be added. Try again.');
             }
-            else res.send('Book successfully added');
+            else res.send('Book successfully added <a href="/u/addbook">Add another Book</a>');
           });
         });
         //res.send(username);
@@ -744,7 +744,7 @@ router.post('/updatebook', function(req, res){
             if (err) {
               console.log(err);
               res.send('Book could not be updated. Try again.');
-            } else res.send('Book successfully updated');
+          } else res.send('Book successfully updated <a href="/u/booklist">Book list</a>');
           });
         });
         //res.send(username);
@@ -783,9 +783,11 @@ router.get('/updatecourse', function(req, res){
           else {
               var c = rows[0];
               var d = c.start;
-              c.start = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+              try {c.start = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();}
+              catch(err) {c.start = '';}
               var d = c.end;
-              c.end = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+              try {c.end = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();}
+              catch(err) {c.end = '';}
               res.render('u/updatecourse', {course: c});
           }
         });
@@ -809,7 +811,7 @@ router.post('/updatecourse', function(req, res){
             if (err) {
               console.log(err);
               res.send('Course could not be updated. Try again.');
-          } else res.send('Course successfully updated');
+          } else res.send('Course successfully updated <a href="/u/courselist">Course list</a>');
         });
 
         //res.send(username);

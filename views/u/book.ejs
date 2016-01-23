@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add Book</title>
+  </head>
+  <body>
+    <h1>Add Book</h1>
+    <form action="/u/addbook" method="post">
+      Name<br>
+      <input type="text" name="name" size="100" required><br><br>
+      Author and Edition<br>
+      <input type="text" name="author" size="100" required><br><br>
+      Course ID (In capitals, add only one course id, dont include any spaces)<br>
+      <input type="text" name="course" size="100" required><br><br>
+      Description<br>
+      <textarea name="description" rows="10" cols="100" required></textarea><br><br>
+      Url of book<br>
+      <input type="url" name="url" size="100" required><br><br>
+      Url of Image<br>
+      <input type="url" name="pic" size="100" required><br><br>
+      <input type="reset"><input type="submit">
+    </form>
+  </body>
+</html>

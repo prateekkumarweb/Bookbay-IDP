@@ -1,0 +1,41 @@
+index.ejs
+
+script
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $.user.isSignin(function(status, data){
+      if (status) {
+        $('#signup').html(data.username);
+        $('#signup').attr('href', '/u/user/');
+        $('#login').html('Logout');
+        $('#signupModal').html('');
+        $('#loginModal').html('');
+        $('#login').click(function() {
+          $.user.signout(function () {
+            location.reload();
+          });
+        });
+      } else {
+        $('#llogin').click(function() {
+          $.user.signin({username: $('#username').val(), password: $('#password').val()}, function(st, dt){
+            if (st) {
+              location.reload();
+            } else {
+              $('#invalidcr').html(dt);
+            }
+          });
+        });
+        $('#finalsup').click(function() {
+          $.user.signup({username: $('#email').val(), fullname: $('#name').val(), password: $('#spassword').val(), cpassword: $('#scpassword').val()}, function(st, dt) {
+            if (st) {
+              location = '/u/user/';
+            } else {
+              $('#mismatch').html(dt);
+            }
+          });
+        });
+      }
+    });
+  });
+</script>

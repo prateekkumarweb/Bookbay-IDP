@@ -1,0 +1,58 @@
+[
+  {
+    "id": "CH",
+    "name": "Chemical Engineering"
+  },
+  {
+    "id": "CE",
+    "name": "Civil Engineering"
+  },
+  {
+    "id": "CS",
+    "name": "Computer Science and Engineering"
+  },
+  {
+    "id": "EE",
+    "name": "Electical Engineering"
+  },
+  {
+    "id": "ES",
+    "name": "Engineering Science"
+  },
+  {
+    "id": "EP",
+    "name": "Engineering Physics"
+  },
+  {
+    "id": "MS",
+    "name": "Materials Science and Metallurgical Engineering"
+  },
+  {
+    "id": "ME",
+    "name": "Mechanical and Aerospace Engineering"
+  },
+  {
+    "id": "BM",
+    "name": "Biomedical Engineering"
+  },
+  {
+    "id": "BO",
+    "name": "Biotechnology"
+  },
+  {
+    "id": "CY",
+    "name": "Chemistry"
+  },
+  {
+    "id": "LA",
+    "name": "Liberal Arts"
+  },
+  {
+    "id": "MA",
+    "name": "Mathematics"
+  },
+  {
+    "id": "PH",
+    "name": "Physics"
+  }
+]

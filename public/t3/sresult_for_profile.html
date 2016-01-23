@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookbay t3</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="css/styles.css" rel="stylesheet" type="text/css">
+<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/jquery-upload.js" type="text/javascript"></script>          
+</head>
+
+<body>
+<!-- COMMON -->
+<!-- NAV BAR -->  
+<div class="row">
+<div class="navbar navbar-inverse col-lg-12 " style="background-color:black;">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#Navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+	  <div class="collapse navbar-collapse" id="Navbar">
+    <ul class="nav navbar-nav navbar-left">
+        <li><a href="index_for_profile.html" class="home-icon" title="Home"><span class="glyphicon glyphicon-home"></span></a></li>
+      </ul>
+
+      <form id="search-bar-btn" class="navbar-form navbar-left" role="search" >
+       <div class="form-group">
+          <input type="text" id="search-bar" class="form-control" placeholder="Search Books..">
+        </div>
+          <a href="sresult_for_profile.html" id="search-btn" class="btn btn-primary" role="button" title="Search"><span class="glyphicon glyphicon-search"></span></a>
+      </form> 
+
+      <ul class="nav navbar-nav navbar-right" style="margin-right:0%">
+        <li>
+            <a href="profile.html" title="Logout"><span class="glyphicon glyphicon-th-large"></span>&nbsp;My Dashboard</a>
+        </li>
+        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span style="font-size:150%">Hi, Name</span>&nbsp;<span class="caret"></span></a>
+          <ul class="dropdown-menu"  role="menu">
+            <li data-toggle="modal" data-target="#select-course"><a href="#"><b>Select My Courses</b></a></li>
+            <li class="divider"></li>
+            <li id="upload-book" data-toggle="modal" data-target="#upld-bk"><a href="#"><b>Upload a Book</b></a></li>
+            <li class="divider"></li> 
+            <li id="request-book" data-toggle="modal" data-target="#req-bk"><a href="#"><b>Ask for a Book</b></a></li>
+            <li class="divider"></li>  
+            <li><a href="index.html"><b style="color:green"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Log out</b></a></li>
+          </ul>
+        </li>  
+      </ul>
+
+           
+    </div>
+</div>
+</div>
+<!-- NAV BAR -->     
+<!-- COMMON --> 
+    
+<!-- select course -->   
+<div class="modal fade" tabindex="-1" id="select-course" role="dialog">
+<div class="modal-dialog modal-lg">
+<div class="container-fluid">    
+<div class="row row-cen"  style="margin-top: 5%;;">
+        <div class="col-lg-11 col-cen">
+            <button class="btn btn-success" style="float:right;" data-dismiss="modal"><b>I am done</b>&nbsp;<span class="glyphicon glyphicon-ok" style="color:chartreuse;"></span></button>
+        </div>
+    </div>
+<div class="row row-cen">
+    <div class="col-lg-11 col-cen" id="course1">
+    <div role="tabpanel">
+    <ul class="nav nav-pills" role="tablist">
+      <li class="active"><a href="#searchc" data-toggle="tab" role="tab">Search Courses</a></li>
+      <li><a href="#view" data-toggle="tab" role="tab">View My Courses</a></li>
+    </ul>    
+    <div id="tabContent1" class="tab-content">
+    <!-- Tab1 -->    
+      <div class="tab-pane fade in active" id="searchc">
+        <div class="row">
+            <div class="col-lg-12">
+                <br>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <input type="text" id="course-search-bar" class="form-control" placeholder="Enter course ID or the course name...">
+                            <span class="input-group-btn">
+                                <button id="course-search-btn" class="btn btn-secondary" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6"></div>
+                </div>
+                <br>
+                
+                <div class="container-fluid select-course-overflow">
+                
+                <!-- Element -->
+                <table width="100%" style="margin-top:1%;">
+                    <tr><td class="course">
+                <div class="row">
+                    <div class="col-lg-12">
+                        BM1030:	Bio-engineering
+                        <div class="col-lg-1 coursebtn-add"><span class="glyphicon glyphicon-plus"></span></div>
+                    </div>
+                </div>
+                    </td></tr>   
+                </table>
+                <!-- Element -->
+                    
+                </div>
+                
+            </div>
+        </div>
+      </div>
+    <!-- Tab1 -->    
+    <!-- Tab2 -->    
+      <div class="tab-pane fade" id="view" style="height:20em;">
+          <div class="row">
+            <div class="col-lg-12">
+                <br>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <input type="text" id="course-search-bar" class="form-control" placeholder="Search in My Courses...">
+                            <span class="input-group-btn">
+                                <button id="course-search-btn" class="btn btn-secondary" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6"></div>
+                </div>
+                <br>
+                
+                <div class="container-fluid select-course-overflow">
+                <!-- Element -->
+                <table width="100%" style="margin-top:1%;">
+                    <tr><td class="course">
+                <div class="row">
+                    <div class="col-lg-12">
+                        BM1030:	Bio-engineering
+                        <div class="col-lg-1 coursebtn-rem"><span class="glyphicon glyphicon-minus"></span></div>
+                    </div>
+                </div>
+                    </td></tr>   
+                </table>
+                <!-- Element -->
+                    
+                </div>
+                
+            </div>
+        </div>
+                
+      </div>
+    <!-- Tab2 -->    
+    </div>   
+    </div>
+        </div> 
+</div>
+</div>
+</div>     
+</div>     
+<!-- select course -->
+    
+<!-- upload book -->
+<div class="modal fade" tabindex="-1" id="upld-bk" role="dialog">
+<div class="modal-dialog modal-lg">    
+<div class="container-fluid">
+<div class="row row-cen" style="margin-top: 50px;">
+    <div class="col-lg-10 col-cen" id="upload-bk">
+        <legend class="up-bk-legend">
+            <b>Details of the book</b>
+            <div class="upldbk-cross" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></div>
+        </legend>
+        
+        <fieldset class="up-bk-field">
+            <label class="up-bk-text">Book Name:</label><br>
+            <input type="text" id="upbk-name" class="form-control" placeholder="Enter name of the Book">
+        </fieldset><br>
+        
+        <fieldset class="up-bk-field">
+            <label class="up-bk-text">Related Course name/Course ID:</label><br>
+			<input type="text" id="upbk-course" class="form-control" placeholder="Enter the related Course">
+        </fieldset><br>
+        
+        <fieldset class="up-bk-field" id="bk-link">
+            <label class="up-bk-text">Download Link:</label><br>
+			<input type="text" id="upbk-link" class="form-control" placeholder="Enter the download link of the book">
+            <a href="#" id="enter-file">Dont have the link? Upload the book instead</a>&nbsp;(Please provide the link only if possible)
+        </fieldset>
+        
+        <fieldset class="up-bk-field" id="bk-file" style="display:none">
+            <label class="up-bk-text">Book location(only .pdf format accepted):</label><br>
+			<input type="file" accept="application/pdf" id="upbk-file" placeholder="Choose the file location..">
+            <a href="#" id="enter-link">Enter the link of the book</a>
+        </fieldset><br>
+        
+        <p id="upbk-error" style="color:red;display:none;">All fields are required!</p>
+        <a href="#" class="btn" id="up-bk-submit" >Submit</a>
+    </div> 
+</div> 
+</div>   
+</div>    
+</div>    
+<!-- upload book -->
+<!-- upload book note -->    
+<div class="modal fade" tabindex="-1" id="upld-bk-thank" role="dialog">
+<div class="modal-dialog modal-lg">
+    <div class="row row-cen">
+        <div class="row row-cen upld-bk-thank" style="margin-top: 100px;">
+            <div class="upld-thank-cross" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></div>
+            <h1><b>Thank You!</b></h1>
+            <p style="color:red;"><b>Note:&nbsp;</b>Your upload will be verified by us and will be published only if the upload is legit</p>
+        </div>
+    </div>
+</div>
+</div>
+<!-- upload book note -->  
+
+<!-- request book -->
+<div class="modal fade" tabindex="-1" id="req-bk" role="dialog">
+<div class="modal-dialog modal-lg">    
+<div class="container-fluid">
+<div class="row row-cen" style="margin-top: 50px;">
+    <div class="col-lg-10 col-cen" id="request-bk">
+        <legend class="req-bk-legend">
+            <b>Details of the book</b>
+            <div class="reqbk-cross" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></div>
+        </legend>
+        
+        <fieldset class="req-bk-field">
+            <label class="req-bk-text">Book Name:</label><br>
+            <input type="text" id="reqbk-name" class="form-control" placeholder="Enter name of the Book">
+        </fieldset><br>
+        
+        <fieldset class="req-bk-field">
+            <label class="req-bk-text">Author Name(s):</label><br>
+            <input type="text" id="reqbk-Aname" class="form-control" placeholder="Enter name of the Author(s)">
+        </fieldset><br>
+        
+        <fieldset class="req-bk-field">
+            <label class="req-bk-text">Related Course name/Course ID:</label><br>
+			<input type="text" id="reqbk-course" class="form-control" placeholder="Enter the related Course">
+        </fieldset><br>
+        
+        <br>
+        
+        <p id="reqbk-error" style="color:red;display:none;">All fields are required!</p>
+        <a href="#" class="btn" id="req-bk-submit" >Submit</a>
+    </div> 
+</div> 
+</div>   
+</div>    
+</div>    
+<!-- request book -->    
+<!-- request book note -->    
+<div class="modal fade" tabindex="-1" id="req-bk-thank" role="dialog">
+<div class="modal-dialog modal-lg">
+    <div class="row row-cen">
+        <div class="row row-cen req-bk-thank" style="margin-top: 100px;">
+            <div class="upld-thank-cross" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></div>
+            <h2><b>Thank You!</b></h2>
+            <p style="color:red;font-size:150%;"><b>We will search the book for you and let you know about the updates soon!</b></p>
+        </div>
+    </div>
+</div>
+</div>
+<!-- request book note --> 
+    
+<!-- One element -->
+<div class="container-fluid home">
+    <a href="book_for_profile.html">
+	<div class="row row-cen">
+    	<div class="col-lg-10 col-cen">
+            <div class="panel panel-default">
+                <div class="panel-body bk-link">
+                    <div class="col-lg-2"><img src="images/1.jpg" width="160px" height="200px" class="img-thumbnail img-responsive" alt="Book image">
+                    </div>
+                    <div class="col-lg-10 col-cen" style="margin-top:2%"><h1>Book Name</h1>
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </div>
+    </a>  
+</div> 
+<!-- One element -->    
+    
+</body>
+</html>

@@ -1,0 +1,640 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookbay</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/css/styles.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/jquery.cookie.js" type="text/javascript"></script>
+<script src="/js/url.min.js" type="text/javascript"></script>
+<script src='/js/mustache.js' type="text/javascript"></script>
+<script src="/js/user.js" type="text/javascript"></script>
+<script src="/js/jquery.js" type="text/javascript"></script>
+<!--<script src="/js/jquery-comments.js" type="text/javascript"></script>-->
+<script src="/js/jquery-upload.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="wrapper">
+  <!-- COMMON -->
+  <!-- NAV BAR -->
+  <div class="container-fluid">
+  <div class="row">
+  <div class="navbar navbar-inverse col-lg-12 " style="background-color:black;border-radius:0;">
+  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#Navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+  	  <div class="collapse navbar-collapse" id="Navbar">
+      <ul class="nav navbar-nav navbar-left">
+          <li><a href="/" class="home-icon" title="Home"><span class="glyphicon glyphicon-home"></span></a></li>
+        </ul>
+
+        <form id="search-bar-btn" class="navbar-form navbar-left" role="search" action="/search" method="get">
+         <div class="form-group">
+            <input type="text" id="search-bar" name="q" class="form-control" placeholder="Search Books.." required>
+          </div>
+            <button type="submit" class="btn btn-primary" id="search-btn" role="button" title="Search"><span class="glyphicon glyphicon-search"></span></button>
+        </form>
+        <% if (!signedIn) {%>
+        <ul class="nav navbar-nav navbar-right" style="margin-right:0%">
+          <li data-toggle="modal" data-target="#signupModal"><a id="signup" title="Sign Up"><span class="glyphicon glyphicon-user"></span>&nbsp;Sign Up</a></li>
+          <li data-toggle="modal" data-target="#loginModal"><a id="login" title="Login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Login</a></li>
+        </ul>
+        <% } else { %>
+          <ul class="nav navbar-nav navbar-right" style="margin-right:0%">
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span style="font-size:150%">Hi, <%= user.fullname %></span>&nbsp;<span class="caret"></span></a>
+              <ul class="dropdown-menu"  role="menu">
+                <li><a href="/u/user/" title="Logout"><span class="glyphicon glyphicon-th-large"></span>&nbsp;My Dashboard</a></li>
+                <li class="divider"></li>
+                <li><a id="logout"><b style="color:green"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Log out</b></a></li>
+                <script>
+                $(document).ready(function(){
+                  $('#logout').click(function(event) {
+                  	$.user.signout(function(){
+                      location.reload(true);
+                    });
+                  });
+                });
+                </script>
+              </ul>
+            </li>
+          </ul>
+        <% } %>
+
+      </div>
+  </div>
+  </div>
+  </div>
+  <!-- NAV BAR -->
+<div id="content">
+  <% if (!signedIn) {%>
+  <!-- Login Form -->
+  <div class="modal fade" tabindex="-1" id="loginModal" role="dialog">
+  <div class="modal-dialog">
+  <div class="row row-cen">
+      <p id="loginnote"></p>
+      <form id="loginform" action="/u/signin" method="post">
+        <input type="hidden" name="url" id="urlofpage"><script>$(document).ready(function(){$("#urlofpage").val($.url())});</script>
+      <div class="col-lg-9 col-cen" id="login2">
+          <div class="row row-cen">
+              <div class="col-lg-12 col-cen">
+      <fieldset>
+          <legend><b class="loginlegend">&nbsp;&nbsp;LOGIN</b><div id="redcross" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></div></legend>
+      <fieldset><label class="linformtext">Email Address:</label><br>
+          <div class="input-group">
+              <input type="text" id="username" name="username" class="form-control" placeholder="Enter your Roll Number" required>
+              <span class="input-group-addon">@iith.ac.in</span>
+          </div>
+      </fieldset>
+			<fieldset><label class="linformtext">Password:</label><br>
+                  <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required>
+                  <p class="error" id="invalidcr"></p>
+			</fieldset>
+      </fieldset>
+              </div>
+          </div>
+          <div class="row row-cen loginbtns">
+              <button id="lsignup" class="signupbtn" title="Sign Up" data-dismiss="modal" data-toggle="modal" data-target="#signupModal">SIGNUP</button>
+              <button type="submit" id="llogin" class="loginbtn" title="Login">LOGIN</button>
+          </div>
+          <div class="row row-cen">
+              <div class="col-lg-12 col-cen" style="margin-bottom:1%" data-dismiss="modal" data-toggle="modal" data-target="#forgotp-modal"><a id="reset" title="Reset Password">Forgot your Password?</a>
+              </div>
+          </div>
+      </div>
+      </form>
+  </div>
+  </div>
+  </div>
+  <!-- Login Form -->
+  <!-- Reset password -->
+  <div class="modal fade" tabindex="-1" id="forgotp-modal" role="dialog">
+  <div class="modal-dialog modal-lg">
+  <div class="row row-cen">
+          <div class="col-lg-9 col-cen forgotp">
+              <div class="row row-cen">
+                  <div class="col-lg-12 col-cen">
+                      <div id="redcross" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></div>
+                      <fieldset>
+                          <label style="margin-top:1em;" class="linformtext">Enter your email address:</label><br>
+                          <form action="/u/forgotpassword" method="post">
+                          <div class="col-lg-10">
+                              <div id="fp-email-form" class="form-group has-feedback">
+                                  <input type="text" name="username" id="fp-email" class="form-control" placeholder="Enter your email address">
+                                  <span id="fp-email-gly" class="glyphicon form-control-feedback"></span>
+                              </div>
+                          </div>
+                          <div class="col-lg-2">
+                              <button type="submit" class="btn btn-warning" style="background-color:orange;">Submit</button>
+                          </div>
+                        </form>
+  				    </fieldset>
+                      <p>Check your inbox after clicking on submit..</p>
+                  </div>
+              </div>
+          </div>
+  </div>
+  </div>
+  </div>
+  <!-- Reset password -->
+
+  <div class="modal fade" tabindex="-1" id="signupModal" role="dialog">
+  <div class="modal-dialog">
+  <!-- Signup Form -->
+  <form id="signupform" action="/u/signup" method="post">
+  <div class="row row-cen">
+          <div class="col-lg-9 col-cen" id="signup2">
+
+              <div class="row row-cen">
+                  <div class="col-lg-12 col-cen">
+          <fieldset>
+              <legend><b class="signuplegend">&nbsp;&nbsp;SIGNUP</b><div id="suredcross" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></div></legend>
+                  <div id="signuperror"></div><fieldset><label class="supformtext">Full Name:</label><br>
+  				    <input type="text" id="name" name="fullname" class="form-control" placeholder="Enter Name">
+                      <p class="error" id="pname"></p>
+  				</fieldset>
+                  <fieldset><label class="supformtext">Email Address:</label><br>
+                      <div class="input-group">
+                          <input type="text" name="username" id="email" class="form-control" placeholder="Enter your Roll Number">
+                          <span class="input-group-addon">@iith.ac.in</span>
+                      </div>
+                      <p class="error" id="pemail"></p>
+  				</fieldset>
+  				<fieldset><label class="supformtext">Password:</label><br>
+  				    <input type="password" name="password" id="spassword" class="form-control" placeholder="Enter Password">
+                      <p class="error" id="pspassword"></p>
+  				</fieldset>
+                  <fieldset><label class="supformtext">Confirm Password:</label><br>
+  				    <div id="cnfPassword" class="form-group has-feedback">
+                          <input type="password" id="scpassword" class="form-control" placeholder="Re-enter Password">
+                          <span id="cnfPasswordOK" class="glyphicon form-control-feedback"></span>
+                      </div>
+
+                      <p class="error" id="pscpassword"></p>
+
+                      <p class="error" id="mismatch"></p>
+  				</fieldset>
+          </fieldset>
+                  </div>
+              </div>
+              <div class="row row-cen signupbtns">
+                  <button type="submit" class="signupbtn1" id="finalsup" title="Sign Up">SIGNUP</button>
+              </div>
+              <div class="row row-cen">
+                  <div class="col-lg-12 col-cen" style="margin-bottom:1%"><a id="mlogin" title="Login" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">Already a member?Login</a>
+                  </div>
+              </div>
+          </div>
+  </div>
+  </form>
+  <!-- Signup Form -->
+  </div>
+  </div>
+
+  <!-- After signing up -->
+  <% if (type==='signupverify') { %>
+  <div class="modal fade" tabindex="-1" id="signup-note" role="dialog">
+  <div class="modal-dialog modal-lg">
+      <div class="row row-cen">
+          <div class="row row-cen signup-note" style="margin-top: 100px;">
+              <h4><b id="emailnote" style="color:green;">A verification email was sent to you. Click on the link sent to you to verify your email.</b></h4>
+              <p>If you didn't revieve the email <a id="resend">Click here</a> to send verification email again. Please wait for 15 minutes before sending another email.</p>
+              <p><a href="/">Home</a></p>
+          </div>
+      </div>
+  </div>
+  </div>
+  <script>
+  $(document).ready(function(){
+    $("#signup-note").modal({backdrop: 'static', keyboard: false});
+    $('#resend').click(function(){
+        $('#emailnote').html('Please wait while an email is sent.').css("color", "blue");
+        $.get('/u/vemail', function(data){
+            if (data) $('#emailnote').html('Successfully another verification email is sent to you.').css("color", "green");
+            else $('#emailnote').html('An error occured while sending a verification email. Try again after some time.').css("color", "red");
+        });
+    }).fail(function(){
+        $('#emailnote').html('An error occured while sending a verification email. Try again after some time.').css("color", "red");
+    });
+  });
+  </script>
+  <% } %>
+  <!-- After signing up -->
+  <% } %>
+  <!-- COMMON -->
+
+<% if (type==='signup') { %>
+  <script>
+    $(document).ready(function(){
+      $('#signuperror').html('<div class="alert alert-danger"><%= message %></div>');
+      $("#signupModal").modal({backdrop: 'static', keyboard: false});
+    });
+  </script>
+<% } %>
+
+<% if (type==='signin') { %>
+  <script>
+    $(document).ready(function(){
+      $("#urlofpage").html('<%= url %>');
+      $("#loginModal").modal({backdrop: 'static', keyboard: false});
+    });
+  </script>
+<% } %>
+
+<div style="">
+<% if (type==='search') { %>
+<div id="searchresultdiv">
+  <% var l = data.length; %>
+  <% if (l === 0) { %>
+    No results
+  <% } else { %>
+  <!-- One element -->
+  <% for (var i=0; i < l; i++) { %>
+  <div class="container-fluid home">
+      <a href="/book?id=<%= data[i].id %>">
+  	<div class="row row-cen">
+      	<div class="col-lg-10 col-cen">
+              <div class="panel panel-default">
+                  <div class="panel-body bk-link">
+                      <div class="col-lg-2"><img src="<%= data[i].pic %>" width="160px" height="200px" class="img-thumbnail img-responsive" alt="Book image">
+                      </div>
+                      <div class="col-lg-10 col-cen" style="margin-top:2%"><h1><%= data[i].name %></h1>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </a>
+  </div>
+  <% } %>
+  <!-- One element -->
+  <% } %>
+</div>
+<% } %>
+
+<% if (type==='book') { %>
+<div id="bookresult">
+  <% var l = data.length; %>
+  <% if (l === 0) { %>
+    No results
+  <% } else { %>
+  <% data = data[0] %>
+  <!-- book -->
+  <div class="container-fluid">
+   <div class="row row-cen main-book">
+      <div class="col-lg-11 col-cen">
+      <div class="panel panel-default">
+                  <div class="panel-body">
+          <div class="col-lg-3">
+              <img src="<%= data.pic %>" width="240px" height="300px" class="img-thumbnail img-responsive" alt="Book image" style="margin:30px 0px;">
+              <a id="showcomments"><span class="badge" id="noofcomments"></span>&nbsp;<b>Comments</b></a>
+              <script>$(document).ready($('#showcomments').click(function(){$('#comments').slideToggle("slow")}));</script>
+          </div>
+          <div class="col-lg-9">
+              <p><h1 style="color:black"><%= data.name %></h1></p>
+              <p><h3 style="color:black">Description:</h3></p>
+              <p style="color:black"><%= data.description %></p>
+              <div class="row row-cen">
+                 <a href="/u/book/download/<%= data.id %>/book.pdf" class="btn btn-primary dwnload" role="button" data-bookid="<%= data.id%>"> <div class="lg-col-2 col-cen dwnload">Download</div></a>
+              </div>
+          </div>
+      </div>
+      </div>
+      </div>
+  </div>
+  <!-- book -->
+  <!-- Comments -->
+  <div class="container-fluid" id="comments" style="display:none;">
+  <div class="row row-cen">
+      <div class="col-lg-11 col-cen">
+        <div class="panel panel-default">
+            <div class="panel-body">
+          <div class="col-lg-11 col-cen"><br>
+              <p style="text-align:left;">Let your friends know your reviews about this book...</p>
+              <input class="form-control comment" id="comment" placeholder="Comment..">
+              <script>
+                $(document).ready(function(){
+                  $('#comment').focus(function(){
+                    $.user.isSignin(function(st){
+                      if (!st) {
+                        $("#first").html("You must login first to comment.");
+                        $('#first').css("display", "block");
+                        $("#comment").attr("disabled", "disabled");
+                      }
+                    });
+                  });
+                  $('#comment').keypress(function(event) {
+                    /* Act on the event */
+                    if (event.which === 13) {
+                      event.preventDefault();
+                      var com = $(this).val();
+                      $.user.commentOnBook("<%= q %>", com, function(st){
+                        if (st) {
+                          $("#comment").val("");
+                          var template = $('#template').html();
+                          Mustache.parse(template);   // optional, speeds up future uses
+                          $.user.getAllCommentsOnBook("<%= q %>", function(data){
+                            //$("#target").html("");
+
+                            $.each(data, function(index, value){
+                              if (index === 0) {
+                                $.user.getVotesAndReplies(value.id, function(vandr){
+
+                                    var t = new Date(Date.parse(value.time));
+                                    var n = new Date();
+                                    var time = t;
+                                    var month = new Array();
+                                    month[0] = "Jan";
+                                    month[1] = "Feb";
+                                    month[2] = "Mar";
+                                    month[3] = "Apr";
+                                    month[4] = "May";
+                                    month[5] = "Jun";
+                                    month[6] = "Jul";
+                                    month[7] = "Aug";
+                                    month[8] = "Sep";
+                                    month[9] = "Oct";
+                                    month[10] = "Nov";
+                                    month[11] = "Dec";
+                                    if (n.getFullYear() === t.getFullYear() && t.getMonth() === n.getMonth() && t.getDate() === n.getDate()) {
+                                      time = "Today, "+t.getHours()+":"+t.getMinutes();
+                                    } else if (t.getFullYear() === n.getFullYear() && t.getMonth() === n.getMonth() && t.getDate() === n.getDate() - 1) {
+                                      time = "Yesterday, "+t.getHours()+":"+t.getMinutes();
+                                    } else if (t.getFullYear() === n.getFullYear()) {
+                                      time = month[t.getMonth()]+" "+t.getDate()+", "+t.getHours()+":"+t.getMinutes();
+                                    } else {
+                                      time = month[t.getMonth()]+" "+t.getDate()+" "+t.getFullYear()+", "+t.getHours()+":"+t.getMinutes();
+                                    }
+                                    var rendered = Mustache.render(template, {c: value, time: time, upvotes: vandr[0].upvotes, downvotes: vandr[1].downvotes});
+
+                                  $('#target').prepend(rendered);
+                                });
+                              }
+
+                            });
+                          });
+                        } else alert("There was an error. Try again.");
+                      });
+                    }
+
+                  });
+                });
+              </script>
+              <span id="first">
+              <div class="row">
+              <div class="col-lg-4" style="text-align:left;">
+                  <b style="color:grey;">You must to be logged-in to comment</b><br><br>
+                  <fieldset><label class="linformtext">Email Address:</label><br>
+  				    <input type="text" id="cusername" class="form-control" placeholder="Enter your email address">
+  				</fieldset><br>
+  				<fieldset><label class="linformtext">Password:</label><br>
+  				    <input type="password" id="cpassword" class="form-control" placeholder="Enter Password">
+                      <p class="error" id="cinvalidcr"></p>
+  				</fieldset>
+                  <a href="#first" id="clogin" title="Login" style="text-align:center;margin-left:35%;"><div class="col-lg-3 col-cen loginbtn">LOGIN</div></a>
+              </div>
+
+              <div class="col-lg-4 col-cen" style="text-align:left;">
+                  <b style="color:grey;">Not a member? Sign up down here..</b><br>
+                  <fieldset><label class="supformtext">Full Name:</label><br>
+  				    <input type="text" id="cname" class="form-control" placeholder="Enter Name">
+                      <p class="error" id="pcname"></p>
+  				</fieldset>
+                  </span>
+                  <div id="second">
+                  <fieldset><label class="supformtext">Email Address:</label><br>
+  				    <input type="email" id="cemail" class="form-control" placeholder="Enter your email address">
+                      <p class="error" id="pcemail"></p>
+  				</fieldset>
+  				<fieldset><label class="supformtext">Password:</label><br>
+  				    <input type="password" id="cspassword" class="form-control" placeholder="Enter Password">
+                      <p class="error" id="pcspassword"></p>
+  				</fieldset>
+                  <fieldset><label class="supformtext">Confirm Password:</label><br>
+  				    <input type="password" id="cscpassword" class="form-control" placeholder="Re-enter Password">
+                      <p class="error" id="pcscpassword"></p>
+                      <p class="error" id="cmismatch"></p>
+                      </div>
+                      <a href="#first" id="csignup" title="Sign Up" style="text-align:left;margin-left:35%;"><div class="col-lg-3 col-cen signupbtn1">SIGNUP</div></a>
+  				</fieldset>
+              </div>
+              </div>
+          </div><br>
+          <script id="template" type="text/template">
+              <!-- A comment -->
+              <div class="comment-list">
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <b class="commenter">&nbsp;&nbsp;{{c.fullname}}</b>&nbsp;&nbsp;<span class="glyphicon glyphicon-comment" style="color:grey;"></span></span>&nbsp;<span class="comment-time">{{time}}</span>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <!-- votes for comments -->
+                      <div class="col-lg-1" style="text-align:center;">
+                          <table width="100%" style="margin-left:15%;">
+                              <tbody>
+                                  <tr>
+                                      <td><span class="rev-green" id="voteup{{c.id}}">{{upvotes}}</span></td>
+                                      <td><span class="rev-red" id="votedown{{c.id}}">{{downvotes}}</span></td>
+                                  </tr>
+                                  <tr>
+                                      <td><span class="glyphicon glyphicon-upload comment-up" onclick='voteup({{c.id}})'></span></td>
+                                      <td><span class="glyphicon glyphicon-download comment-down" onclick='votedown({{c.id}})'></span></td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                      <!-- votes for comments -->
+                      <div class="col-lg-11">
+                          <span>{{c.comment}}</span>
+                      </div>
+                  </div>
+              </div>
+              <!-- A comment -->
+          </script>
+          <div id='target'></div>
+          <script>
+          $(document).ready(function(){
+            var template = $('#template').html();
+            Mustache.parse(template);   // optional, speeds up future uses
+            $.user.getAllCommentsOnBook("<%= q %>", function(data){
+              $("#noofcomments").html(data.length);
+              $.each(data, function(index, value){
+                $.user.getVotesAndReplies(value.id, function(vandr){
+                  var t = new Date(Date.parse(value.time));
+                  var n = new Date();
+                  var time = t;
+                  var month = new Array();
+                  month[0] = "Jan";
+                  month[1] = "Feb";
+                  month[2] = "Mar";
+                  month[3] = "Apr";
+                  month[4] = "May";
+                  month[5] = "Jun";
+                  month[6] = "Jul";
+                  month[7] = "Aug";
+                  month[8] = "Sep";
+                  month[9] = "Oct";
+                  month[10] = "Nov";
+                  month[11] = "Dec";
+                  if (n.getFullYear() === t.getFullYear() && t.getMonth() === n.getMonth() && t.getDate() === n.getDate()) {
+                    time = "Today, "+t.getHours()+":"+t.getMinutes();
+                  } else if (t.getFullYear() === n.getFullYear() && t.getMonth() === n.getMonth() && t.getDate() === n.getDate() - 1) {
+                    time = "Yesterday, "+t.getHours()+":"+t.getMinutes();
+                  } else if (t.getFullYear() === n.getFullYear()) {
+                    time = month[t.getMonth()]+" "+t.getDate()+", "+t.getHours()+":"+t.getMinutes();
+                  } else {
+                    time = month[t.getMonth()]+" "+t.getDate()+" "+t.getFullYear()+", "+t.getHours()+":"+t.getMinutes();
+                  }
+                  var rendered = Mustache.render(template, {c: value, time: time, upvotes: vandr[0].upvotes, downvotes: vandr[1].downvotes});
+                  $('#target').append(rendered);
+                });
+              });
+            });
+
+          });
+          function voteup(id) {
+            if($("span[onclick='voteup("+id+")']").hasClass("comment-up")){
+                var x=Number($("#voteup"+id).html()), y=Number($("#votedown"+id).html());
+                if ($.user.isSignin(function(st, err){
+                  if (st) {
+                    if($("span[onclick='votedown("+id+")']").hasClass("comment-rev-click")){
+                        $("#voteup"+id).html(x+1);
+                        $("#votedown"+id).html(y-1);
+                    }
+                    else{
+                        $("#voteup"+id).html(x+1);
+                    }
+                    $.user.voteOnComment(id, 1, function(){
+                      $.user.getVotesAndReplies(id, function(vandr){
+                        $("#voteup"+id).html(vandr[0].upvotes);
+                        $("#votedown"+id).html(vandr[1].downvotes);
+                        $("span[onclick='voteup("+id+")']").removeClass("comment-up").addClass("comment-rev-click");
+                        $("span[onclick='votedown("+id+")']").removeClass("comment-rev-click").addClass("comment-down");
+                      });
+
+                    });
+
+                  } else {
+                    if (err === "Not signed in") alert("You must sign in first.");
+                    else alert("There was a temporary error. Try refreshing page or try again later.");
+                  }
+                }));
+
+
+            }
+          }
+
+          function votedown(id) {
+            if($("span[onclick='votedown("+id+")']").hasClass("comment-down")){
+                var x=Number($("#votedown"+id).html()), y=Number($("#voteup"+id).html());
+                if ($.user.isSignin(function(st, err){
+                  if (st) {
+                    if($("span[onclick='voteup("+id+")']").hasClass("comment-rev-click")){
+                        $("#votedown"+id).html(x+1);
+                        $("#voteup"+id).html(y-1);
+                    }
+                    else{
+                        $("#votedown"+id).html(x+1);
+                    }
+                    $.user.voteOnComment(id, -1, function(){
+                      $.user.getVotesAndReplies(id, function(vandr){
+                        $("#voteup"+id).html(vandr[0].upvotes);
+                        $("#votedown"+id).html(vandr[1].downvotes);
+                        $("span[onclick='votedown("+id+")']").removeClass("comment-down").addClass("comment-rev-click");
+                        $("span[onclick='voteup("+id+")']").removeClass("comment-rev-click").addClass("comment-up");
+                      });
+
+                    });
+
+                  } else {
+                    if (err === "Not signed in") alert("You must sign in first.");
+                    else alert("There was a temporary error. Try refreshing page or try again later.");
+                  }
+                }));
+
+
+            }
+          }
+
+          </script>
+      </div>
+  </div>
+  </div>
+</div>
+</div>
+  <!-- Comments -->
+  <% } %>
+
+</div>
+<% } %>
+
+<% if (type==='index') { %>
+  <div class="panel panel-primary" style="margin-left:10%;margin-right:10%">
+    <div class="panel-body row row-cen">
+      <img src="/images/logo.png" style="height:250px" class=""><br>
+      <form role="search" action="/search" method="get">
+        <div class="form-group">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <input type="text" id="searchquery0" name="q" class="form-control" placeholder="" required>
+            <script>$(document).ready(function(){$('#searchquery0').focus()});</script>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+        <div class="col-md-12"><br>
+          <button type="submit" class="btn btn-primary" role="button" title="Search">Search Books</button>
+        </div>
+      </form>
+    </div>
+  </div>
+<% } %>
+</div>
+</div>
+<!-- Footer -->
+    <div class="footer container-fluid" id="footer" style="background-color: black;">
+      <form action="/contact-us" method="post" style="background-color: black;">
+        <!-- Contact Us -->
+        <div class="container-fluid" id="send-msg-form" style="background-color: black;">
+        <div class="row row-cen" style="padding:0;padding-top:0.5em;background-color: black;">
+            <div class="col-lg-4 col-cen" style="text-align:right;">
+                <span id="send-msg-collapse" class="glyphicon glyphicon-menu-down"></span>
+            </div>
+        </div>
+
+        <div class="row row-cen" style="padding:0 0 1em 0;background-color: black;">
+            <div class="col-lg-4 col-cen" style="border-bottom: 1px solid white;background-color: black;">
+            <fieldset>
+                <label style="font-size:110%;">My Email ID:</label>
+                <input class="form-control" type="text" name="email" placeholder="Enter a valid email ID for communication..." required>
+            </fieldset>
+            <fieldset style="padding-top:1em;">
+                <label style="font-size:110%;">My Message:</label>
+                <textarea class="form-control message" name="message" style="height:8em;" placeholder="Message" required></textarea>
+            </fieldset>
+                <button type="submit" id="send-msg" class="btn btn-info send-msg">Send</button>
+            </div>
+        </div>
+        </div>
+        <!-- Contact Us -->
+        Bookbay - IITH &emsp;
+        <a href="#contact-us" id="contact-us" style="color:#00ffff;">Contact Us</a>
+      </form>
+    </div>
+    <script>
+    $(document).ready(function(){
+        $("#contact-us").click(function(){
+            $("#send-msg-form").css("display", "block");
+            $(".footer").css("background-color","#000000");
+        });
+
+        $("#send-msg-collapse,#send-msg").click(function(){
+            $("#send-msg-form").slideUp();
+            $(".footer").css("background-color","#000000");
+        });
+    });
+    </script>
+<!-- Footer -->
+</div>
+</body>
+</html>

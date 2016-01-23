@@ -1,0 +1,363 @@
+body{
+    background-image: url(../images/bg.jpg);
+    background-repeat: repeat-y;
+    background-size: cover;
+    font-family: sans-serif;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+.row-cen {
+    text-align:center;
+}
+
+.col-cen {
+    display:inline-block;
+    float:none;
+}
+
+.nav-search-bar{
+     background-color:black;
+     margin-top:-2%;
+     border:1px solid black;
+}
+.navhov:hover{
+    background-color: black;
+    color:white;
+}
+
+.home-icon{
+    font-size: 160%;
+}
+
+a.dwnload:hover{
+    background-color: #00cc00;
+    box-shadow: 0px 7px 15px black,
+                0px 0px 3px;
+    transition: box-shadow 0.2s, background-color 0.2s;
+}
+
+div.dwnload{
+    line-height: 300%;
+    width: 150px;
+}
+
+#loginModal,#signupModal{
+    margin-top: 3%;
+}
+
+#loginnote{
+    font-size: 150%;
+}
+
+#login2,#signup2,.forgotp{
+    background-color: #ffffff;
+    margin-top: 0.3%;
+    margin-bottom: 0.3%;
+    box-shadow: 0px 5px 15px black,
+                0px 1px 3px;
+
+}
+
+.forgotp{
+    margin-top: 20%;
+}
+
+#redcross,#suredcross,.upld-thank-cross,.req-thank-cross,.upldbk-cross,.reqbk-cross,.signup-note-cross{
+    color: red;
+    float: right;
+    margin-top: 7px;
+    width: 25px;
+    line-height: 25px;
+}
+
+.upld-thank-cross,.signup-note-cross,.req-thank-cross{
+    font-size: 130%;
+    margin-right: 5px;
+}
+
+#redcross:hover,#suredcross:hover,.upld-thank-cross:hover,.req-thank-cross:hover,.upldbk-cross:hover,.reqbk-cross:hover,.signup-note-cross:hover{
+    cursor: pointer;
+}
+
+.loginlegend,.signuplegend{
+    color: #245256;
+    text-shadow:0px 0px 2px aqua;
+    font-size:150%;
+    margin-right: -2%;
+}
+
+
+.linformtext,.supformtext,.up-bk-text,.req-bk-text{
+    font-size: 130%;
+}
+
+.loginbtns,.signupbtns{
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
+
+.loginbtn{
+    line-height: 200%;
+    border-radius: 7px;
+    border-color: #007ace;
+    background-color: #007ace;
+    color: white;
+    margin-left: 2%;
+    text-align: center;
+    transition: box-shadow 0.1s;
+    width: 7em;
+}
+
+.signupbtn{
+    line-height: 200%;
+    border-radius: 7px;
+    border-color: #ff3d00;
+    background-color: #ff3d00;
+    color: white;
+    margin-right: 2%;
+    text-align: center;
+    transition: box-shadow 0.1s;
+    width: 7em;
+}
+
+.signupbtn1{
+    line-height: 200%;
+    border-radius: 7px;
+    border-color: #007ace;
+    background-color: #007ace;
+    color: white;
+    text-align: center;
+    transition: box-shadow 0.1s;
+    width: 7em;
+}
+
+.signupbtn:hover,.signupbtn1:hover,.loginbtn:hover,.coursebtn:hover{
+    box-shadow: 0px 7px 15px black,
+                0px 0px 3px;
+}
+
+
+
+#mlogin:hover{
+    cursor: pointer;
+}
+
+.error{
+    text-align:left;
+    color:red;
+}
+
+#course1,#upload-bk,.upld-bk-thank,.req-bk-thank,#request-bk,.signup-note{
+    background-color: #ffffff;
+    box-shadow: 0px 5px 15px black,
+                0px 1px 3px;
+
+}
+
+.signup-note{
+    padding: 1em 0;
+}
+
+.course{
+    text-align: left;
+    font-size: 130%;
+    font-family: sans-serif;
+    border-bottom: 1px solid #d7d7d7;
+    padding-left: 3%;
+}
+
+.coursebtn-add,.coursebtn-rem{
+    float: right;
+    text-align: center;
+    margin: 0% 5% 0.5% 0%;
+    border-radius: 3px;
+    color: white;
+}
+
+.coursebtn-add,#up-bk-submit,#req-bk-submit{
+    background-color: #007ace;
+}
+.coursebtn-rem{
+    background-color: #ff3d00;
+}
+
+.coursebtn-add:hover,.coursebtn-rem:hover,#up-bk-submit:hover,#req-bk-submit:hover{
+    box-shadow: 0px 0px 5px black,
+                0px 2px 5px black;
+    cursor: pointer;
+    color: white;
+}
+
+#up-bk-submit,#req-bk-submit{
+    color: white;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+
+.comment{
+    margin: 1% 0%;
+    height: 50px;
+}
+
+.reply{
+    margin: 1% 0;
+}
+
+.reply-login-note{
+    font-size: 80%;
+}
+
+#first,#second{
+    display: none;
+}
+
+.comment-list{
+    display: block;
+    text-align: left;
+    font-size: 115%;
+    padding: 1% 0%;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.commenter{
+    color: #0070ff;
+}
+
+.commenter-reply{
+    color: #0070ff;
+    font-size: 90%;
+}
+
+.a-reply{
+    margin: 0.3em 0;
+}
+.reply-text{
+    float: right;
+    font-size: 90%;
+}
+
+.comment-up,.comment-down{
+    font-size:150%;
+}
+
+.comment-up:hover,.comment-down:hover{
+    font-size:160%;
+    cursor: pointer;
+    text-shadow: 0px 0px 0px grey, 0px 0px 1px;
+}
+
+.comment-rev-click{
+    font-size:160%;
+    text-shadow: 0px 0px 0px aqua, 0px 0px 2px;
+}
+
+
+.rev-green{
+    font-size: 120%;
+    color: green;
+}
+
+.rev-red{
+    font-size: 120%;
+    color: red;
+}
+
+.up-bk-legend,.req-bk-legend{
+    font-size: 200%;
+}
+
+.up-bk-field,.req-bk-field{
+     padding:0px 12.5%;
+     text-align:left;
+}
+
+.db-main{
+    background-color: white;
+}
+
+.panel-rec,.panel-top{
+    height: 35em;
+    overflow: scroll;
+}
+
+.home{
+    margin-top: -1.3em;
+}
+
+
+.bk-link:hover{
+    text-shadow: 0px 0px 2px black,
+                 0px 0px 2px black;
+    box-shadow: 0px 0px 5px black,
+                0px 0px 5px black;
+}
+
+.select-course-overflow{
+    height:20em;
+    overflow:scroll;
+}
+
+.comment-time{
+     color:grey;
+     font-size:80%;
+}
+
+
+
+.message{
+    resize: none;
+}
+
+.send-msg{
+    background-color: #0099ff;
+    margin: 1em 0 0.5em 0;
+    border-radius: 10px;
+    width: 8em;
+}
+
+#send-msg-collapse{
+    height: 1.5em;
+    width: 1.5em;
+    text-align: center;
+}
+
+#send-msg-collapse:hover{
+    cursor: pointer;
+    color: yellow;
+}
+
+#send-msg-form{
+    display: none;
+}
+
+html,
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+}
+#wrapper {
+	min-height:100%;
+	position:relative;
+}
+#header {
+	background:#ededed;
+	padding:10px;
+}
+#content {
+	padding-bottom:20px; /* Height of the footer element */
+}
+#footer, #send-msg-form {
+	background-color: black;
+	width:100%;
+	height:20px;
+	position:absolute;
+	bottom:0;
+	left:0;
+  color: white;
+  text-align: center;
+}

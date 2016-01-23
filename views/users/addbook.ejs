@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Add book</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h3>Add a book :</h3>
+        See at the end how to give id to a book.<br><br>
+        <form action="/users/addbook" method="post">
+            Security Key* : <input type="password" name="key"><br><br>
+            Book Id* : <input type="text" name="id"><br><br>
+            Book Name* : <input type="text" name="name"><br><br>
+            Author : <input type="text" name="author"><br><br>
+            Course : <input type="text" name="course"><br><br>
+            Description : <br><textarea name="description" cols="50" rows="10"></textarea><br><br>
+            Url of book* : <br><input type="text" name="url" size="50"><br><br>
+            Url of Picture* : <input type="text" name="pic" size="50"><br><br>
+            User : <input type="text" name="user"><br><br>
+            * means compulsory to be filled<br>
+            <input type="submit"> <input type="reset">
+        </form><br><br>
+        Instructions :<br>
+        <pre>
+01. Id of a book should be of this format.
+        XXSSMMMMAAAAYYNNNN
+02. XX - Department ID
+03. SS - To whom is it useful.
+        B1, B2, B3, B4, MT, PD
+04. MMMM - Book Name abbreviated. Make it four characters only. It is compulsory. Moe than single character of words can also be used.
+05. AAAA - Author Name abbreviated same as above.
+06. YY - Year of publication.
+07. NNNN - Add a serial number starting from 1001.
+        For every book 1001 will be good. If you get error then go for 1002, ...
+08. Make a note that you add complete names.
+09. Always try adding the description from some site.
+10. Use capital letters while giving id to book.
+11. Add complete url of the page. Add .pdf only.
+12. Add complete url of the picture. Add .jpg/.png/.gif only.
+        </pre>
+    </body>
+</html>

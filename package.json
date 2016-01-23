@@ -1,0 +1,25 @@
+{
+  "name": "Bookbay",
+  "version": "0.3.4",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.2.28",
+    "body-parser": "*",
+    "client-ip": "^0.1.0",
+    "cookie-parser": "*",
+    "ejs": "*",
+    "express": "*",
+    "express-session": "*",
+    "morgan": "*",
+    "multer": "*",
+    "mysql": "*",
+    "nodemailer": "^0.7.1",
+    "proxy-agent": "^2.0.0",
+    "request-ip": "^1.1.4",
+    "serve-favicon": "*",
+    "serve-static": "^1.10.0"
+  }
+}

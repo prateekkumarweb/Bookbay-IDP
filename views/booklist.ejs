@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Book list</title>
+  </head>
+  <body>
+    <table border='1'>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>author and edition</th>
+        <th>description</th>
+        <th>url</th>
+        <th>pic</th>
+        <th>User Who Added</th>
+      </tr>
+    <% for (var i=0; i<books.length; i++) { %>
+      <tr>
+        <td><%= books[i].id%></td>
+        <td><%= books[i].name%></td>
+        <td><%= books[i].author%></td>
+        <td><%= books[i].description%></td>
+        <td><a href="<%= books[i].url%>"><%= books[i].url%></a></td>
+        <td><a href="<%= books[i].pic%>"><%= books[i].pic%></a></td>
+        <td><%= books[i].userWhoAdded%></td>
+      </tr>
+    <% } %>
+    <table>
+  </body>
+</html>

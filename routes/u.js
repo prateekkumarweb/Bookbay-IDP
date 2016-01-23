@@ -705,9 +705,53 @@ router.post('/addbook', function(req, res){
   });
 });
 
+router.get('/updatebook', function(req, res){
+  verifyProfile(req, function(a, b, user){
+    if (a && b) {
+      var admin = ['CS15BTECH11031', 'CS15BTECH11018', 'ME15BTECH11024', 'EE15BTECH11016', 'CS15BTECH11043'];
+      var username = user.profilename.toUpperCase();
+      if (admin.indexOf(username) === -1) res.send(403);
+      else {
+        var id = req.query.id;
+        conn.query("select * from books where id=?", [id], function(err, rows){
+          if (err) res.send('Error occured');
+          else if (rows.length == 0) res.send("Invalid id.");
+          else res.render('u/updatebook', {book: rows[0]});
+        });
+      }
+    } else res.send(403);
+  });
+});
 
-
-
+router.post('/updatebook', function(req, res){
+  verifyProfile(req, function(a, b, user){
+    if (a && b) {
+      var admin = ['CS15BTECH11031', 'CS15BTECH11018', 'ME15BTECH11024', 'EE15BTECH11016', 'CS15BTECH11043'];
+      var username = user.profilename.toUpperCase();
+      if (admin.indexOf(username) === -1) res.send(403);
+      else {
+        var id=req.body.id;
+        var name=req.body.name;
+        var author=req.body.author;
+        var description=req.body.description;
+        var course=req.body.course.toUpperCase();
+        var url=req.body.url;
+        var pic=req.body.pic;
+        var userWhoAdded=username;
+        conn.query('insert into courses (id, name, start, end) values (?, ?, ?, ?)', [course, course, '2015-07-28', '2020-12-31'], function(err){
+          if (err) console.log("err"+err);
+          conn.query('update books set name=?, author=?, course=?, description=?, url=?, pic=?, userWhoAdded=? where id=?', [name, author, course, description, url, pic, userWhoAdded, id], function(err, rows, fields){
+            if (err) {
+              console.log(err);
+              res.send('Book could not be added. Try again.');
+            } else res.send('Book successfully updated');
+          });
+        });
+        //res.send(username);
+      }
+    } else res.send(403);
+  });
+});
 
 
 

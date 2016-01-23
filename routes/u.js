@@ -624,7 +624,7 @@ router.get('/booklist', function(req, res){
       if (admin.indexOf(username) === -1) res.send(403);
       else {
         conn.query("select * from books order by id desc", function(err, rows){
-          res.render('booklist', {books: rows});
+          res.render('u/booklist', {books: rows});
         });
       }
     } else res.send(403);
@@ -743,7 +743,7 @@ router.post('/updatebook', function(req, res){
           conn.query('update books set name=?, author=?, course=?, description=?, url=?, pic=?, userWhoAdded=? where id=?', [name, author, course, description, url, pic, userWhoAdded, id], function(err, rows, fields){
             if (err) {
               console.log(err);
-              res.send('Book could not be added. Try again.');
+              res.send('Book could not be updated. Try again.');
             } else res.send('Book successfully updated');
           });
         });
@@ -753,10 +753,70 @@ router.post('/updatebook', function(req, res){
   });
 });
 
+router.get('/courselist', function(req, res){
+  verifyProfile(req, function(a, b, user){
+    if (a && b) {
+      var admin = ['CS15BTECH11031', 'CS15BTECH11018', 'ME15BTECH11024', 'EE15BTECH11016', 'CS15BTECH11043'];
+      var username = user.profilename.toUpperCase();
+      if (admin.indexOf(username) === -1) res.send(403);
+      else {
+        conn.query("select * from courses order by id asc", function(err, rows){
+            console.log(rows);
+            res.render('u/courselist', {courses: rows});
+        });
+      }
+    } else res.send(403);
+  });
+});
 
+router.get('/updatecourse', function(req, res){
+  verifyProfile(req, function(a, b, user){
+    if (a && b) {
+      var admin = ['CS15BTECH11031', 'CS15BTECH11018', 'ME15BTECH11024', 'EE15BTECH11016', 'CS15BTECH11043'];
+      var username = user.profilename.toUpperCase();
+      if (admin.indexOf(username) === -1) res.send(403);
+      else {
+        var id = req.query.id;
+        conn.query("select * from courses where id=?", [id], function(err, rows){
+          if (err) res.send('Error occured');
+          else if (rows.length == 0) res.send("Invalid id.");
+          else {
+              var c = rows[0];
+              var d = c.start;
+              c.start = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+              var d = c.end;
+              c.end = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+              res.render('u/updatecourse', {course: c});
+          }
+        });
+      }
+    } else res.send(403);
+  });
+});
 
+router.post('/updatecourse', function(req, res){
+  verifyProfile(req, function(a, b, user){
+    if (a && b) {
+      var admin = ['CS15BTECH11031', 'CS15BTECH11018', 'ME15BTECH11024', 'EE15BTECH11016', 'CS15BTECH11043'];
+      var username = user.profilename.toUpperCase();
+      if (admin.indexOf(username) === -1) res.send(403);
+      else {
+        var id=req.body.id;
+        var name=req.body.name;
+        var start = req.body.start;
+        var end = req.body.end;
+        conn.query('update courses set name=?, start=?, end=? where id=?', [name, start, end, id], function(err, rows, fields){
+            if (err) {
+              console.log(err);
+              res.send('Course could not be updated. Try again.');
+          } else res.send('Course successfully updated');
+        });
 
-
+        //res.send(username);
+      }
+    } else res.send(403);
+  });
+});
 
 
 

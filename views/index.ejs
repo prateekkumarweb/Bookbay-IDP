@@ -275,14 +275,14 @@ $(document).ready(function(){
     var totalbooks = <%= page[0] %>;
     var page = <%= page[1] %>;
     var list = '<div class="row row-cen"><div class="col-lg-12 col-cen" style="margin-top: -1em;">';
-    if (page > 0) list+='<ul class="pagination"><li><a href="/search?q='+encodeURIComponent("<%= q %>")+'&page='+(page-1)+'" style="background-color: #337ab7;color:white;border-color:#337ab7;">Prev</a></li></ul>';
+    if (page > 0) list+='<ul class="pagination"><li><a href="/search?q='+encodeURIComponent("<%= q %>")+'&page='+(page)+'" style="background-color: #337ab7;color:white;border-color:#337ab7;">Prev</a></li></ul>';
     list+='<ul class="pagination">';
     for (i=0; i<totalbooks; i+=10) {
-        if (page === i/10) list+='<li class="active"><a href="/search?q='+encodeURIComponent("<%= q %>")+'&page='+(i/10)+'">'+((i/10)+1)+'</a></li>';
-        else list+='<li><a href="/search?q='+encodeURIComponent("<%= q %>")+'&page='+(i/10)+'">'+((i/10)+1)+'</a></li>';
+        if (page === i/10) list+='<li class="active"><a href="/search?q='+encodeURIComponent("<%= q %>")+'&page='+((i/10)+1)+'">'+((i/10)+1)+'</a></li>';
+        else list+='<li><a href="/search?q='+encodeURIComponent("<%= q %>")+'&page='+((i/10)+1)+'">'+((i/10)+1)+'</a></li>';
     }
     list+='</ul>';
-    if (page <= ((totalbooks-1)/10)-1) list+='<ul class="pagination"><li><a href="/search?q='+encodeURIComponent("<%= q %>")+'&page='+(page+1)+'" style="background-color: #337ab7;color:white;border-color:#337ab7;">Next</a></li></ul>';
+    if (page <= ((totalbooks-1)/10)-1) list+='<ul class="pagination"><li><a href="/search?q='+encodeURIComponent("<%= q %>")+'&page='+(page+2)+'" style="background-color: #337ab7;color:white;border-color:#337ab7;">Next</a></li></ul>';
     list+='</div></div>';
     $(".paginationdiv").html(list);
     $("#searchquery0").value("<%= q %>");

@@ -122,7 +122,7 @@ router.get('/search', function(req, res) {
     conn.query("select * from books where match (id, name, author, course) against (? in natural language mode with query expansion)",[q] , function(err, rows, fields) {
         common.signInStatus(req, conn, function(st, u){
           if (req.query.page) {
-              var page = req.query.page;
+              var page = req.query.page - 1;
           } else var page=0;
           var l = rows.length;
           var re = [];

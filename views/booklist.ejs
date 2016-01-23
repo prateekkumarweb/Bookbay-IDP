@@ -14,6 +14,7 @@
         <th>url</th>
         <th>pic</th>
         <th>User Who Added</th>
+        <th>Link to update</th>
       </tr>
     <% for (var i=0; i<books.length; i++) { %>
       <tr>
@@ -24,6 +25,7 @@
         <td><a href="<%= books[i].url%>"><%= books[i].url%></a></td>
         <td><a href="<%= books[i].pic%>"><%= books[i].pic%></a></td>
         <td><%= books[i].userWhoAdded%></td>
+        <td><a href="/u/updatebook?id=<%= books[i].id%>">Update book</a></td>
       </tr>
     <% } %>
     <table>

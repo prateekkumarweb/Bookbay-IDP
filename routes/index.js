@@ -154,4 +154,6 @@ router.post('/contact-us', function(req, res){
     }
 });
 
+router.get('/testing', function(req, res){res.send(process.env.TESTING)});
+
 module.exports = router;

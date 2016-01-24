@@ -38,7 +38,7 @@ router.post('/mysql', function(req, res){
         res.render('users/index');
     }
 });
-
+/*
 var s3 = new AWS.S3();
 s3.listBuckets(function(err, data) {
   if (err) { console.log("Error:", err); }
@@ -49,5 +49,5 @@ s3.listBuckets(function(err, data) {
     }
   }
 });
-
+*/
 module.exports = router;

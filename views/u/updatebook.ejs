@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Add Book</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
   </head>
   <body>
     <h1>Add Book</h1>
@@ -14,7 +15,25 @@
       Author and Edition<br>
       <input type="text" name="author" size="100" value="<%= book.author %>" required><br><br>
       Course ID (In capitals, add only one course id, dont include any spaces)<br>
-      <input type="text" name="course" size="100" value="<%= book.course %>" required><br><br>
+      <input type="text" id="id" name="course" size="100" value="<%= book.course %>" required><br><br>
+      <p id="avail"></p>
+      <script>
+      $(document).ready(function(){
+          $("#id").keyup(function(){
+              var id = $("#id").val();
+              $("#id").val(id.toUpperCase());
+              id = $("#id").val();
+              if (id.length == 6) {
+                  $.get("/u/addcourse", {id: id}, function(data){
+                     if (data == "Not Available") $("#avail").html("There is no course with this id. You can <a href='/u/addcourse' target='_blank'>add here</a>");
+                     else $("#avail").html(data);
+                  });
+              } else {
+                  $("#avail").html('');
+              }
+          });
+      });
+      </script>
       Description<br>
       <textarea name="description" rows="10" cols="100" required><%= book.description %></textarea><br><br>
       Url of book<br>

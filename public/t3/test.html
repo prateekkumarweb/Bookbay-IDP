@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Test</title>
+        <script src="/js/jquery-2.1.4.min.js" charset="utf-8"></script>
+        <script src="/js/jquery.searcher.min.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <input id="tablesearchinput" />
+        <table id="tabledata">
+            <tbody>
+                <tr>
+                    <td>#1</td>
+                    <td>Like a Rolling Stone</td>
+                    <td>Bob Dylan</td>
+                    <td>1965</td>
+                </tr>
+                <tr>
+                    <td>#2</td>
+                    <td>(I Can't Get No) Satisfaction</td>
+                    <td>The Rolling Stones</td>
+                    <td>1965</td>
+                </tr>
+            </tbody>
+        </table>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#tabledata").searcher({
+                    inputSelector: "#tablesearchinput"
+                    // itemSelector (tbody > tr) and textSelector (td) already have proper default values
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -3,10 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>Course list</title>
+    <script src="/js/jquery-2.1.4.min.js" charset="utf-8"></script>
+    <script src="/js/jquery.searcher.min.js" charset="utf-8"></script>
   </head>
   <body>
       <a href="/u/addcourse">Add a new course</a><br>
-    <table border='1' style="width:100%">
+      <input id="tablesearchinput" placeholder="search"><br>
+    <table border='1' style="width:100%" id="tabledata">
       <tr>
         <th>id</th>
         <th>name</th>
@@ -14,6 +17,7 @@
         <th>end</th>
         <th>Link to update</th>
       </tr>
+      <tbody>
     <% for (var i=0; i<courses.length; i++) { %>
       <tr>
         <td><%= courses[i].id %></td>
@@ -23,6 +27,15 @@
         <td><a href="/u/updatecourse?id=<%= courses[i].id%>">Update Course</a></td>
       </tr>
     <% } %>
+    </tbody>
     <table>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#tabledata").searcher({
+                    inputSelector: "#tablesearchinput"
+                    // itemSelector (tbody > tr) and textSelector (td) already have proper default values
+                });
+            });
+        </script>
   </body>
 </html>

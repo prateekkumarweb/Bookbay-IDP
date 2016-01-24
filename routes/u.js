@@ -530,6 +530,30 @@ router.get('/user/notregisteredcourses', function(req, res){
     });
 });
 
+router.get('/user/notregisteredcoursessearch', function(req, res){
+    var q = req.query.q;
+    verifyProfile(req, function(a, b, user){
+      if (a && b) {
+        var r = [];
+        var p = "%"+q+"%";
+        conn.query("select * from courses where (id like ? or name like ?) order by id asc", [p, p], function(err, rows){
+          conn.query("select course from userCourses where username=?", [user.profilename], function(err1, rows1){
+            var c = [];
+            for (var i=0; i<rows1.length; i++) {
+              c.push(rows1[i].course);
+            }
+            for (var i=0; i<rows.length; i++) {
+              if (c.indexOf(rows[i].id) === -1) {
+                r.push(rows[i]);
+              }
+            }
+            res.send(r);
+          });
+        });
+      } else res.send([]);
+    });
+});
+
 router.post('/user/registercourse', function(req, res){
     verifyProfile(req, function(a, b, user){
       if (a&&b) {

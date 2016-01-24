@@ -15,7 +15,7 @@ var conn = mysql.createConnection({
   	host     : process.env.RDS_HOSTNAME || 'localhost',
   	user     : process.env.RDS_USERNAME || 'root',
   	password : process.env.RDS_PASSWORD || 'pk-mysql-db',
- 	  port     : process.env.RDS_PORT || '3306',
+ 	port     : process.env.RDS_PORT || '3306',
     database : 'idp'
 });
 conn.connect(function(err){
@@ -75,7 +75,7 @@ router.post('/signin', function(req, res){
             res.redirect(url);
         } else {
             res.clearCookie('user');
-            res.redirect(url);
+            res.render('index', {type: 'signinerror', signedIn: false, user: [], url: url});
         }
     });
 })
@@ -147,12 +147,6 @@ router.post('/signup', function(req, res){
                             });
                         }
                       });
-
-
-
-
-
-
                   }
               });
             }
@@ -353,28 +347,7 @@ router.get('/user', function(req, res){
     res.render('profile');
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// stuff related to books
 
 router.get('/book/download/:id/book.pdf', function(req, res){
   var id = req.params.id;

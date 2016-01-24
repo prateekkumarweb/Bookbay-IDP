@@ -72,7 +72,7 @@
   <div class="row row-cen">
       <p id="loginnote"></p>
       <form id="loginform" action="/u/signin" method="post">
-        <input type="hidden" name="url" id="urlofpage"><script>$(document).ready(function(){$("#urlofpage").val($.url())});</script>
+        <input type="hidden" name="url" id="urlofpage" value="">
       <div class="col-lg-9 col-cen" id="login2">
           <div class="row row-cen">
               <div class="col-lg-12 col-cen">
@@ -233,8 +233,18 @@
 <% if (type==='signin') { %>
   <script>
     $(document).ready(function(){
-      $("#urlofpage").html('<%= url %>');
+      $("#urlofpage").val('<%= url %>');
       $("#loginModal").modal({backdrop: 'static', keyboard: false});
+    });
+  </script>
+<% } %>
+
+<% if (type==='signinerror') { %>
+  <script>
+    $(document).ready(function(){
+      $("#urlofpage").val('<%= url %>');
+      $("#loginModal").modal({backdrop: 'static', keyboard: false});
+      $("#invalidcr").html("Inavlid roll number or password.");
     });
   </script>
 <% } %>
@@ -313,7 +323,7 @@ $(document).ready(function(){
               <p><h3 style="color:black">Description:</h3></p>
               <p style="color:black"><%= data.description %></p>
               <div class="row row-cen">
-                 <a href="/u/book/download/<%= data.id %>/book.pdf" class="btn btn-primary dwnload" role="button" data-bookid="<%= data.id%>"> <div class="lg-col-2 col-cen dwnload">Download</div></a>
+                 <a href="/u/book/download/<%= data.id %>/book.pdf" class="btn btn-primary dwnload" role="button" data-bookid="<%= data.id%>" download> <div class="lg-col-2 col-cen dwnload">Download</div></a>
               </div>
           </div>
       </div>
@@ -654,5 +664,6 @@ $(document).ready(function(){
     </script>
 <!-- Footer -->
 </div>
+<script>$(document).ready(function(){if ($("#urlofpage").val() == "") {$("#urlofpage").val($.url())}});</script>
 </body>
 </html>

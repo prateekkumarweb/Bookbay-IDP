@@ -368,19 +368,14 @@ router.get('/book/download/:id/book.pdf', function(req, res){
         path: link.path
       };
 
-  //    var request = http.request(options, function(response) {
-        //var data='';
-  //      var data = [];
+      var request = http.request(options, function(response) {
 
-  //      response.on('data', function(chunk) {
-          //data += chunk;
-//          data.push(chunk);
-//        });
+        response.on('data', function(chunk) {
+          res.write(chunk);
+        });
 
-    //    response.on('end', function() {
-    //      data = Buffer.concat(data); // do something with data
-          //console.log(data.toString());
-          if (req.signedCookies.user) {
+        response.on('end', function() {
+            if (req.signedCookies.user) {
               verifyProfile(req, function(a, b, user){
                   if (a && b) {
                       var username = user.profilename.toUpperCase();
@@ -392,19 +387,13 @@ router.get('/book/download/:id/book.pdf', function(req, res){
               });
           } else download();
           function download() {
-            /*if (data == '') res.redirect(l);
-            else {*/
-              res.header('content-type', 'application/pdf');
-              res.header('content-disposition', 'attachment');
-              res.redirect(l);
-          //    res.send(data);
-          //  }
+              res.end();
           }
 
-  //      });
-//      });
+      });
+      });
 
-  //    request.end();
+      request.end();
 
     }
   });

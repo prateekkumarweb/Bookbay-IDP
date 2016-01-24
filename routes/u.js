@@ -349,7 +349,7 @@ router.get('/user', function(req, res){
 
 // stuff related to books
 
-router.get('/book/download/:id/book.pdf', function(req, res){
+router.get('/book/download/:id/:name', function(req, res){
   var id = req.params.id;
   conn.query('select url from books where id=?', [id], function(err, rows, fields){
     if (err) res.send(404);

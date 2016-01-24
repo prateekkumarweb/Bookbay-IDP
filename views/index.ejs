@@ -323,7 +323,7 @@ $(document).ready(function(){
               <p><h3 style="color:black">Description:</h3></p>
               <p style="color:black"><%= data.description %></p>
               <div class="row row-cen">
-                 <a href="/u/book/download/<%= data.id %>/book.pdf" class="btn btn-primary dwnload" role="button" data-bookid="<%= data.id%>" download> <div class="lg-col-2 col-cen dwnload">Download</div></a>
+                 <a href="/u/book/download/<%= data.id %>/<%= encodeURIComponent(data.name) %>.pdf" class="btn btn-primary dwnload" role="button" data-bookid="<%= data.id%>" download> <div class="lg-col-2 col-cen dwnload">Download</div></a>
               </div>
           </div>
       </div>

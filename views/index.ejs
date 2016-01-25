@@ -324,10 +324,8 @@ $(document).ready(function(){
               <p><h3 style="color:black">Description:</h3></p>
               <p style="color:black"><%= data.description %></p>
               <div class="row row-cen">
-                 <a href="/u/book/download/<%= data.id %>/<%= encodeURIComponent(data.name) %>.pdf" class="btn btn-primary dwnload" role="button" data-bookid="<%= data.id%>" download> <div class="col-lg-2 col-cen dwnload">Download</div></a>
-              </div>
-              <div class="row row-cen">
-                 <a href="/u/book/download/<%= data.id %>/<%= encodeURIComponent(data.name) %>.pdf" class="btn btn-primary dwnload" role="button" data-bookid="<%= data.id%>" target="_blank"> <div class="col-lg-2 col-cen dwnload">Read Online</div></a>
+                 <a href="/u/book/download/<%= data.id %>/<%= encodeURIComponent(data.name) %>.pdf" class="btn btn-primary dwnload" style="margin-right:1em;" role="button" data-bookid="<%= data.id%>" download> <div class="col-lg-2 col-cen dwnload">Download</div></a>
+                 <a href="/u/book/download/<%= data.id %>/<%= encodeURIComponent(data.name) %>.pdf" class="btn btn-primary dwnload" style="margin-left:1em;" role="button" data-bookid="<%= data.id%>" target="_blank"> <div class="col-lg-2 col-cen dwnload">Read Online</div></a>
               </div>
           </div>
       </div>

@@ -268,7 +268,7 @@
                   <div class="panel-body bk-link">
                       <div class="col-lg-2"><img src="<%= data[i].pic %>" width="160px" height="200px" class="img-thumbnail img-responsive" alt="Book image">
                       </div>
-                      <div class="col-lg-10 col-cen" style="margin-top:2%"><h1><%= data[i].name %></h1>
+                      <div class="col-lg-10 col-cen" style="margin-top:2%"><h1><%= data[i].name %></h1><h3><%= data[i].author%></h3>
                       </div>
                   </div>
               </div>
@@ -321,6 +321,7 @@ $(document).ready(function(){
           </div>
           <div class="col-lg-9">
               <p><h1 style="color:black"><%= data.name %></h1></p>
+              <h3><%= data.author %></h3>
               <p><h3 style="color:black">Description:</h3></p>
               <p style="color:black"><%= data.description %></p>
               <div class="row row-cen">

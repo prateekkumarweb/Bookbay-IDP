@@ -641,7 +641,7 @@ router.post('/user/book/upload', multer({ dest: 'public/uploads/' }).single('fil
                     smtpTransport.sendMail(mailOptions, function(error, response){
                         if(error){
                             console.log(error);
-                            
+
                         }else{
                             console.log("Message sent: " + response.message);
                         }
@@ -651,9 +651,9 @@ router.post('/user/book/upload', multer({ dest: 'public/uploads/' }).single('fil
                         // if you don't want to use this transport object anymore, uncomment following line
                         //smtpTransport.close(); // shut down the connection pool, no more messages
                     });
-                res.send('Thank you');
+                res.render("message", {title: 'Thank You!', body: '<b>Note:&nbsp;</b>Your upload will be verified by us and will be published only if the upload is legit'});
              // });
-            
+
             } else {
               fs.unlink(file.path, function(err){
                   if (err) console.log(err);
@@ -665,7 +665,7 @@ router.post('/user/book/upload', multer({ dest: 'public/uploads/' }).single('fil
         verifyProfile(req, function(a, b, user){
           if (a&&b) {
             sendEmail("noreply@iith.co.in", "Upload Book", 'User : '+user.profilename+' Book : '+name+' Course : '+course+' Link : '+link, 'User : '+user.profilename+'<br>Book : '+name+'<br>Course : '+course+'<br>Link : '+link, function(q){
-                if (q) res.send(true);
+                if (q) res.render("message", {title: 'Thank You!', body: 'Your upload will be verified by us and will be published only if the upload is legit'});
                 else res.send(false);
             });
           } else res.send(false);

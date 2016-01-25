@@ -24,8 +24,6 @@ $(document).ready(function(){
            }
         else {
             $("#up-bk-form").submit();
-            $("#upld-bk").modal("hide");
-            $("#upld-bk-thank").modal("show");
         }
 
     });

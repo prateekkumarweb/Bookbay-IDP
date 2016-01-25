@@ -1,8 +1,9 @@
 body{
-    background-image: url(../images/bg.jpg);
+    background-image: url(/images/banner1.jpg);
     background-repeat: repeat-y;
     background-size: cover;
     font-family: sans-serif;
+    background-color: #00ccff;
 }
 
 a:hover {
@@ -360,4 +361,121 @@ body {
 	left:0;
   color: white;
   text-align: center;
+}
+
+
+.home-pic-1{
+    background-image: url(/images/banner1.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 600px;
+    background-size: cover;
+}
+
+.home-pic-2{
+    background-image: url(/images/banner3.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 600px;
+    background-size: cover;
+}
+
+.signupreq{
+    min-height: 100px;
+    background-color: white;
+    text-align: center;
+    padding: 1.2em 0;
+    color: #006680;
+    font-size: 250%;
+    font-weight: bold;
+    text-shadow: 0 0 0, 0 0 2px #006680;
+}
+
+.signupreq-btn-box{
+    min-height: 100px;
+    text-align: center;
+    padding: 3em 0;
+    color: #006680;
+    background: white;
+    background: linear-gradient(to right, white , #006680);
+}
+
+.signupreq-btn{
+    width: 50%;
+    font-size: 120%;
+    height: 3em;
+    background-color: white;
+    border: 2px solid #006680;
+}
+
+.askbook{
+    background-image: url(/images/askbook.png);
+    min-height: 340px;
+}
+
+.askbook-text{
+    color: white;
+    text-shadow: 0 0 0, 0 0 3px #ff8566;
+    font-weight: bold;
+    font-size: 220%;
+    min-height: 340px;
+    padding: 1em;
+}
+
+.selectcourse{
+    background-image: url(/images/selectcourse.png);
+    min-height: 340px;
+}
+
+.selectcourse-text{
+    color: white;
+    text-shadow: 0 0 0, 0 0 3px #ff8566;
+    font-weight: bold;
+    font-size: 220%;
+    min-height: 340px;
+    padding: 1em;
+}
+
+.recbook{
+    background-image: url(../images/recbook.png);
+    min-height: 260px;
+}
+
+.recbook-text{
+    color: white;
+    text-shadow: 0 0 0, 0 0 3px #ff8566;
+    font-weight: bold;
+    font-size: 220%;
+    min-height: 260px;
+    padding: 1em;
+}
+
+.askbook,.selectcourse,.recbook{
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.aboutpage{
+    background-color: #0d0d0d;
+    color: #b3b3b3;
+    min-height: 150px;
+    padding: 1em 0;
+    margin-top: -1.5em;
+}
+
+.scrollDown{
+    top: 15em;
+}
+
+.scroll-down-arrow{
+    color: white;
+    height: 70px;
+    font-size: 150%;
+}
+
+.transparent{
+    background-color: transparent !important;
+    border: none ;
+    border-bottom: 1px solid white;
+    color: white;
 }

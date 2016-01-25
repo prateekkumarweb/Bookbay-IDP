@@ -1,11 +1,14 @@
 body{
-    background-image: url(../images/bg.jpg);
+    background-image: url(/images/bg.jpg);
     background-repeat: repeat-y;
     background-size: cover;
     font-family: sans-serif;
     background-color: #00ccff;
 }
 
+a:hover {
+    cursor: pointer;
+}
 .row-cen {
     text-align:center;
 }
@@ -22,7 +25,7 @@ body{
 }
 .navhov:hover{
     background-color: black;
-    color:white;	
+    color:white;
 }
 
 .home-icon{
@@ -55,7 +58,7 @@ div.dwnload{
     margin-bottom: 0.3%;
     box-shadow: 0px 5px 15px black,
                 0px 1px 3px;
-    
+
 }
 
 .forgotp{
@@ -151,7 +154,7 @@ div.dwnload{
     background-color: #ffffff;
     box-shadow: 0px 5px 15px black,
                 0px 1px 3px;
-    
+
 }
 
 .signup-note{
@@ -175,10 +178,10 @@ div.dwnload{
 }
 
 .coursebtn-add,#up-bk-submit,#req-bk-submit{
-    background-color: #007ace;   
+    background-color: #007ace;
 }
 .coursebtn-rem{
-    background-color: #ff3d00;   
+    background-color: #ff3d00;
 }
 
 .coursebtn-add:hover,.coursebtn-rem:hover,#up-bk-submit:hover,#req-bk-submit:hover{
@@ -230,7 +233,7 @@ div.dwnload{
 }
 
 .a-reply{
-    margin: 0.3em 0; 
+    margin: 0.3em 0;
 }
 .reply-text{
     float: right;
@@ -287,7 +290,7 @@ div.dwnload{
 
 
 .bk-link:hover{
-    text-shadow: 0px 0px 2px black, 
+    text-shadow: 0px 0px 2px black,
                  0px 0px 2px black;
     box-shadow: 0px 0px 5px black,
                 0px 0px 5px black;
@@ -339,7 +342,7 @@ div.dwnload{
 
 
 .home-pic-1{
-    background-image: url(../images/banner1.jpg);
+    background-image: url(/images/banner1.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 600px;
@@ -347,7 +350,7 @@ div.dwnload{
 }
 
 .home-pic-2{
-    background-image: url(../images/banner3.jpg);
+    background-image: url(/images/banner3.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 600px;
@@ -383,7 +386,7 @@ div.dwnload{
 }
 
 .askbook{
-    background-image: url(../images/askbook.png);
+    background-image: url(/images/askbook.png);
     min-height: 340px;
 }
 
@@ -397,7 +400,7 @@ div.dwnload{
 }
 
 .selectcourse{
-    background-image: url(../images/selectcourse.png);
+    background-image: url(/images/selectcourse.png);
     min-height: 340px;
 }
 
@@ -411,7 +414,7 @@ div.dwnload{
 }
 
 .recbook{
-    background-image: url(../images/recbook.png);
+    background-image: url(/images/recbook.png);
     min-height: 260px;
 }
 

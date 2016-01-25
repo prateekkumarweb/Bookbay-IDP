@@ -104,7 +104,7 @@ router.get('/*', function(req, res, next){
 
 router.get('/', function(req, res){
     common.signInStatus(req, conn, function(st, u){
-        res.render('index', {type: 'index', signedIn: st, user: u});
+        res.render('home', {type: 'index', signedIn: st, user: u});
     });
 });
 
@@ -150,7 +150,7 @@ router.post('/contact-us', function(req, res){
     if (e != '' && m != '') {
         conn.query("insert into contactus (email, message) values (?, ?)", [e, m], function(err){if (err) console.log(err)});
         //sendEmail("Bookbay Support<help@iith.co.in>", "Feedback from contact us form", "Email: "+e+" Message: "+m, "<h4>Email: "+e+" </h4><p>"+m+"</m>", function(){});
-        res.send("Thank you");
+        res.render("message", {title: 'Thank You!', body: 'We would be eager to help you.'})
     }
 });
 

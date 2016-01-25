@@ -18,12 +18,14 @@ $(document).ready(function(){
         $("#bk-link").slideDown();
     });
 
-    $("#up-bk-submit").click(function(){
-        if(($("#upbk-name").val()=="") || ($("#upbk-course").val()=="") || (($("#upbk-link").val()=="") && ($("#upbk-file").val()==""))){
+    $("#up-bk-form").submit(function(e){
+        if(($("#upbk-name").val()=="") || ($("#upbk-course").val()=="") || (($("#upbk-link").val()=="") && ($("#upbk-file").val()==""))) {
            $("#upbk-error").css('display','block');
+           e.preventDefault();
            }
-        else{
-            $("#up-bk-submit").attr({'data-dismiss':"modal",'data-toggle':"modal",'data-target':"#upld-bk-thank"});
+        else {
+            $("#upld-bk").modal("hide");
+            $("#upld-bk-thank").modal("show");
         }
 
     });
@@ -44,7 +46,7 @@ $(document).ready(function(){
             $.post("/u/user/book/request", {name: $("#reqbk-name").val(), course: $("#reqbk-course").val(), author: $("#reqbk-Aname").val()}, function(data, status){
                 if (status == "success" && data == true) {
                     $(this).removeClass("disabled").html("Submit");
-                    $("#req-bk").modal("hide"); 
+                    $("#req-bk").modal("hide");
                     $("#req-bk-thank").modal("show");
                  } else alert("Error occured.");
             });

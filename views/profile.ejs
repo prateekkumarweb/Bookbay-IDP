@@ -246,30 +246,32 @@
             <div class="upldbk-cross" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></div>
         </legend>
 
+    <form id="up-bk-form" action="/u/user/book/upload" method="post" enctype="multipart/form-data">
         <fieldset class="up-bk-field">
             <label class="up-bk-text">Book Name:</label><br>
-            <input type="text" id="upbk-name" class="form-control" placeholder="Enter name of the Book">
+            <input type="text" id="upbk-name" name="name" class="form-control" placeholder="Enter name of the Book">
         </fieldset><br>
 
         <fieldset class="up-bk-field">
             <label class="up-bk-text">Related Course name/Course ID:</label><br>
-			<input type="text" id="upbk-course" class="form-control" placeholder="Enter the related Course">
+			<input type="text" id="upbk-course" name="course" class="form-control" placeholder="Enter the related Course">
         </fieldset><br>
 
         <fieldset class="up-bk-field" id="bk-link">
             <label class="up-bk-text">Download Link:</label><br>
-			<input type="text" id="upbk-link" class="form-control" placeholder="Enter the download link of the book">
+			<input type="text" id="upbk-link" name="link" class="form-control" placeholder="Enter the download link of the book">
             <a href="#" id="enter-file">Dont have the link? Upload the book instead</a>&nbsp;(Please provide the link only if possible)
         </fieldset>
 
         <fieldset class="up-bk-field" id="bk-file" style="display:none">
             <label class="up-bk-text">Book location(only .pdf format accepted):</label><br>
-			<input type="file" accept="application/pdf" id="upbk-file" placeholder="Choose the file location..">
+			<input type="file" accept="application/pdf" id="upbk-file" name="file" placeholder="Choose the file location..">
             <a href="#" id="enter-link">Enter the link of the book</a>
         </fieldset><br>
 
         <p id="upbk-error" style="color:red;display:none;">All fields are required!</p>
-        <a href="#" class="btn" id="up-bk-submit" >Submit</a>
+        <button id="up-bk-submit" type="submit" class="btn">Submit</button>
+    </form>
     </div>
 </div>
 </div>

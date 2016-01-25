@@ -1,0 +1,19 @@
+body{
+    background-image: url(../images/bg2.jpg);
+    background-size: cover;
+    font-family: sans-serif;
+}
+
+.row-cen {
+    text-align:center;
+    margin-top: 3em;
+}
+
+.col-cen {
+    display:inline-block;
+    float:none;
+}
+
+.error{
+    color: red;
+}

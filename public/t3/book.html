@@ -11,6 +11,7 @@
 <script src="js/bootstrap.js" type="text/javascript"></script>
 <script src="js/jquery.js" type="text/javascript"></script>
 <script src="js/jquery-comments.js" type="text/javascript"></script>
+<script src="js/jquery-footer.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -324,5 +325,36 @@
 </div>
 </div>
 <!-- Comments -->
+
+<!-- Footer -->
+    <div class="footer container-fluid">
+        <!-- Contact Us -->
+        <div class="container-fluid" id="send-msg-form">
+        <div class="row row-cen" style="padding-top:0.5em;">
+            <div class="col-lg-4 col-cen" style="text-align:right;">
+                <span id="send-msg-collapse" class="glyphicon glyphicon-menu-down"></span>
+            </div>
+        </div>
+        
+        <div class="row row-cen" style="padding:0 0 1em 0;">
+            <div class="col-lg-4 col-cen" style="border-bottom: 1px solid white;">
+            <fieldset>
+                <label style="font-size:110%;">My Email ID:</label>
+                <input class="form-control" type="text" placeholder="Enter a valid email ID for communication...">    
+            </fieldset>
+            <fieldset style="padding-top:1em;">
+                <label style="font-size:110%;">My Message:</label>
+                <textarea class="form-control message" type="text" style="height:8em;" placeholder="Message"></textarea>  
+            </fieldset> 
+                <button id="send-msg" class="btn btn-info send-msg">Send</button>
+            </div>
+        </div>
+        </div>
+        <!-- Contact Us -->
+        © Bookbay - IITH v0.3.1&emsp;
+        <a href="#contact-us" id="contact-us" style="color:#00ffff;">Contact Us</a>
+    </div>  
+<!-- Footer -->
+
 </body>
 </html>

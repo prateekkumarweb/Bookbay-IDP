@@ -3,10 +3,7 @@ body{
     background-repeat: repeat-y;
     background-size: cover;
     font-family: sans-serif;
-}
-
-a:hover {
-    cursor: pointer;
+    background-color: #00ccff;
 }
 
 .row-cen {
@@ -25,7 +22,7 @@ a:hover {
 }
 .navhov:hover{
     background-color: black;
-    color:white;
+    color:white;	
 }
 
 .home-icon{
@@ -58,7 +55,7 @@ div.dwnload{
     margin-bottom: 0.3%;
     box-shadow: 0px 5px 15px black,
                 0px 1px 3px;
-
+    
 }
 
 .forgotp{
@@ -154,7 +151,7 @@ div.dwnload{
     background-color: #ffffff;
     box-shadow: 0px 5px 15px black,
                 0px 1px 3px;
-
+    
 }
 
 .signup-note{
@@ -178,10 +175,10 @@ div.dwnload{
 }
 
 .coursebtn-add,#up-bk-submit,#req-bk-submit{
-    background-color: #007ace;
+    background-color: #007ace;   
 }
 .coursebtn-rem{
-    background-color: #ff3d00;
+    background-color: #ff3d00;   
 }
 
 .coursebtn-add:hover,.coursebtn-rem:hover,#up-bk-submit:hover,#req-bk-submit:hover{
@@ -233,7 +230,7 @@ div.dwnload{
 }
 
 .a-reply{
-    margin: 0.3em 0;
+    margin: 0.3em 0; 
 }
 .reply-text{
     float: right;
@@ -290,7 +287,7 @@ div.dwnload{
 
 
 .bk-link:hover{
-    text-shadow: 0px 0px 2px black,
+    text-shadow: 0px 0px 2px black, 
                  0px 0px 2px black;
     box-shadow: 0px 0px 5px black,
                 0px 0px 5px black;
@@ -308,8 +305,6 @@ div.dwnload{
 
 .footer{
     background-color: black;
-    position: absolute;
-    bottom: 0;
     width: 100%;
     color: white;
     text-align: center;
@@ -339,4 +334,100 @@ div.dwnload{
 
 #send-msg-form{
     display: none;
+}
+
+
+.home-pic-1,.home-pic-2{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 600px;
+    background-size: cover;
+}
+
+.home-pic-1{
+    background-image: url(../images/banner1.jpg);
+}
+
+.home-pic-2{
+    background-image: url(../images/banner2.jpg);
+}
+
+.signupreq{
+    min-height: 100px;
+    background-color: white;
+    text-align: center;
+    padding: 1.2em 0;
+    color: #006680;
+    font-size: 250%;
+    font-weight: bold;
+    text-shadow: 0 0 0, 0 0 2px #006680;
+}
+
+.signupreq-btn-box{
+    min-height: 100px;
+    text-align: center;
+    padding: 3em 0;
+    color: #006680;
+    background: white;
+    background: linear-gradient(to right, white , #006680);
+}
+
+.signupreq-btn{
+    width: 50%;
+    font-size: 120%;
+    height: 3em;
+    background-color: white;
+    border: 2px solid #006680;
+}
+
+.selectcourse{
+    background-color: #808080;
+    background-image: url(../images/selectcourse.png);
+    min-height: 340px;
+}
+
+.selectcourse-text{
+    background: linear-gradient(to left, #808080 , white);
+    color: white;
+    text-shadow: 0 0 0, 0 0 6px #006680;
+    font-weight: bold;
+    font-size: 300%;
+    min-height: 340px;
+}
+
+.recbook{
+    background-color: #0c43e9;
+    background-image: url(../images/recbook.png);
+    min-height: 260px;
+}
+
+.recbook-text{
+    background: linear-gradient(to right, #0c43e9 , white);
+    color: white;
+    text-shadow: 0 0 0, 0 0 5px #006680;
+    font-weight: bold;
+    font-size: 300%;
+    min-height: 260px;
+}
+
+.selectcourse,.recbook{
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.aboutpage{
+    background-color: #0d0d0d;
+    color: #b3b3b3;
+    min-height: 150px;
+    padding: 1em 0;
+}
+
+.scrollDown{
+    top: 15em;
+}
+
+.scroll-down-arrow{
+    color: white;
+    height: 70px;
+    font-size: 150%;
 }

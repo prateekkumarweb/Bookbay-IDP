@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $("#contact-us").click(function(){
-        $("#send-msg-form").slideDown();
+        $("#send-msg-form").css("display","block");
         $(".footer").css("background-color","#101010");
     });
     

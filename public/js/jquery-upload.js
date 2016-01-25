@@ -18,12 +18,12 @@ $(document).ready(function(){
         $("#bk-link").slideDown();
     });
 
-    $("#up-bk-form").submit(function(e){
-        if(($("#upbk-name").val()=="") || ($("#upbk-course").val()=="") || (($("#upbk-link").val()=="") && ($("#upbk-file").val()==""))) {
+    $("#up-bk-submit").click(function(e){
+        if(($("#upbk-name").val()=="") || ($("#upbk-course").val()=="")) {
            $("#upbk-error").css('display','block');
-           e.preventDefault();
            }
         else {
+            $("#up-bk-form").submit();
             $("#upld-bk").modal("hide");
             $("#upld-bk-thank").modal("show");
         }

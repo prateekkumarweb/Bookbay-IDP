@@ -40,10 +40,13 @@ $(document).ready(function(){
            $("#reqbk-error").css('display','block');
            }
         else{
+            $(this).addClass("disabled").html("Please wait");
             $.post("/u/user/book/request", {name: $("#reqbk-name").val(), course: $("#reqbk-course").val(), author: $("#reqbk-Aname").val()}, function(data, status){
-                // if (status == "success" && data == true) {
-                    $("#req-bk-submit").attr({'data-dismiss':"modal",'data-toggle':"modal",'data-target':"#req-bk-thank"});
-                // } else alert("Error occured.");
+                if (status == "success" && data == true) {
+                    $(this).removeClass("disabled").html("Submit");
+                    $("#req-bk").modal("hide"); 
+                    $("#req-bk-thank").modal("show");
+                 } else alert("Error occured.");
             });
         }
 

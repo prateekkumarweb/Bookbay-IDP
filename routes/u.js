@@ -163,22 +163,24 @@ router.post('/signup', function(req, res){
 
 router.get('/verify/:r', function(req, res){
     var r = req.params.r;
-    conn.query("select * from users where verify=?", [r], function(err, rows, fields){
-        if (err) res.send("Couldnot verify user. There was a temperory error.");
-        else {
-            if (rows.length === 0) res.send(404);
+    if (r.length == 64) {
+        conn.query("select * from users where verify=?", [r], function(err, rows, fields){
+            if (err) res.send("Couldnot verify user. There was a temperory error.");
             else {
-                conn.query("insert into userProfile (profilename, fullname) values (?, ?)", [rows[0].username, rows[0].fullname], function(errr){
-                    if (errr) res.redirect("/u/user");
-                    else {
-                        conn.query("update users set verify='verified' where verify=?", [r], function(){
-                            res.send("You have successfully verified your email. <a href='/u/user'>Go to Home</a>");
-                        });
-                    }
-                });
+                if (rows.length === 0) res.send(404);
+                else {
+                    conn.query("insert into userProfile (profilename, fullname) values (?, ?)", [rows[0].username, rows[0].fullname], function(errr){
+                        if (errr) res.redirect("/u/user");
+                        else {
+                            conn.query("update users set verify=? where verify=?", ['verified'+rows[0].username, r], function(){
+                                res.send("You have successfully verified your email. <a href='/u/user'>Go to Home</a>");
+                            });
+                        }
+                    });
+                }
             }
-        }
-    });
+        });
+    } else res.sned(404);
 });
 
 router.post('/signout', function(req, res){
@@ -235,16 +237,18 @@ router.post('/forgotpassword', function(req, res){
 
 router.get('/forgotpassword/:r', function(req, res){
     var r = req.params.r;
-    conn.query("select * from users where verify=?", [r], function(err, rows, fields){
-        if (err) res.send("Couldnot verify user. There was a temperory error.");
-        else {
-            if (rows.length === 0) res.send(404);
+    if (r.length == 64) {
+        conn.query("select * from users where verify=?", [r], function(err, rows, fields){
+            if (err) res.send("Couldnot verify user. There was a temperory error.");
             else {
-                res.render('forgotpassword', {verify: r, error: ''});
-                //res.send("Now you can change your password");
+                if (rows.length === 0) res.send(404);
+                else {
+                    res.render('forgotpassword', {verify: r, error: ''});
+                    //res.send("Now you can change your password");
+                }
             }
-        }
-    });
+        });
+    }
 });
 
 router.post('/newpassword', function(req, res){
@@ -261,7 +265,7 @@ router.post('/newpassword', function(req, res){
                 conn.query("update users set password=? where verify=? and username=?", [common.hash(a), v, r], function(err, rows, fields){
                     if (err) res.send("Couldnot verify user. There was a temperory error.");
                     else res.send("Now you can login with your new password.");
-                    conn.query("update users set verify=? where username=?", ['verify', r], function(err){
+                    conn.query("update users set verify=? where username=?", ['verify'+r, r], function(err){
                         if (err) console.log(err);
                     });
                 });

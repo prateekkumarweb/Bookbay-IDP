@@ -35,17 +35,11 @@
       </form>
 
       <ul class="nav navbar-nav navbar-right" style="margin-right:0%">
-        <li>
-            <a href="/" title="Logout">&nbsp;Home</a>
-        </li>
+            <li data-toggle="modal" data-target="#select-course"><a class="update"><b>Select My Courses</b></a></li>
+            <li id="upload-book" data-toggle="modal" data-target="#upld-bk"><a><b>Upload a Book</b></a></li>
+            <li id="request-book" data-toggle="modal" data-target="#req-bk"><a><b>Ask for a Book</b></a></li>
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span style="font-size:150%">Hi, <%= u.fullname %></span>&nbsp;<span class="caret"></span></a>
           <ul class="dropdown-menu"  role="menu">
-            <li data-toggle="modal" data-target="#select-course"><a class="update"><b>Select My Courses</b></a></li>
-            <li class="divider"></li>
-            <li id="upload-book" data-toggle="modal" data-target="#upld-bk"><a><b>Upload a Book</b></a></li>
-            <li class="divider"></li>
-            <li id="request-book" data-toggle="modal" data-target="#req-bk"><a><b>Ask for a Book</b></a></li>
-            <li class="divider"></li>
             <li><a id="logout"><b style="color:green"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;Log out</b></a></li>
             <script>
             $(document).ready(function(){
@@ -92,12 +86,7 @@
                 <br>
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" id="course-search-bar" class="form-control" placeholder="Enter course ID or the course name...">
-                            <span class="input-group-btn">
-                                <button id="course-search-btn" class="btn btn-secondary" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                            </span>
-                        </div>
+                            <input type="text" id="course-search-bar" class="form-control" placeholder="Start typing the course name...">
                     </div>
                     <div class="col-lg-6"></div>
                 </div>

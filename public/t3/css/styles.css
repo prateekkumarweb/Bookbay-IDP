@@ -337,19 +337,21 @@ div.dwnload{
 }
 
 
-.home-pic-1,.home-pic-2{
+
+.home-pic-1{
+    background-image: url(../images/banner1.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 600px;
     background-size: cover;
 }
 
-.home-pic-1{
-    background-image: url(../images/banner1.jpg);
-}
-
 .home-pic-2{
-    background-image: url(../images/banner2.jpg);
+    background-image: url(../images/banner3.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 600px;
+    background-size: cover;
 }
 
 .signupreq{
@@ -380,37 +382,49 @@ div.dwnload{
     border: 2px solid #006680;
 }
 
+.askbook{
+    background-image: url(../images/askbook.png);
+    min-height: 340px;
+}
+
+.askbook-text{
+    color: white;
+    text-shadow: 0 0 0, 0 0 3px #ff8566;
+    font-weight: bold;
+    font-size: 220%;
+    min-height: 340px;
+    padding: 1em;
+}
+
 .selectcourse{
-    background-color: #808080;
     background-image: url(../images/selectcourse.png);
     min-height: 340px;
 }
 
 .selectcourse-text{
-    background: linear-gradient(to left, #808080 , white);
     color: white;
-    text-shadow: 0 0 0, 0 0 6px #006680;
+    text-shadow: 0 0 0, 0 0 3px #ff8566;
     font-weight: bold;
-    font-size: 300%;
+    font-size: 220%;
     min-height: 340px;
+    padding: 1em;
 }
 
 .recbook{
-    background-color: #0c43e9;
     background-image: url(../images/recbook.png);
     min-height: 260px;
 }
 
 .recbook-text{
-    background: linear-gradient(to right, #0c43e9 , white);
     color: white;
-    text-shadow: 0 0 0, 0 0 5px #006680;
+    text-shadow: 0 0 0, 0 0 3px #ff8566;
     font-weight: bold;
-    font-size: 300%;
+    font-size: 220%;
     min-height: 260px;
+    padding: 1em;
 }
 
-.selectcourse,.recbook{
+.askbook,.selectcourse,.recbook{
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -420,6 +434,7 @@ div.dwnload{
     color: #b3b3b3;
     min-height: 150px;
     padding: 1em 0;
+    margin-top: -1.5em;
 }
 
 .scrollDown{
@@ -430,4 +445,11 @@ div.dwnload{
     color: white;
     height: 70px;
     font-size: 150%;
+}
+
+.transparent{
+    background-color: transparent !important;
+    border: none ;
+    border-bottom: 1px solid white;
+    color: white;
 }

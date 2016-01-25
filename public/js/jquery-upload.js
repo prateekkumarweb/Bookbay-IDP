@@ -8,7 +8,7 @@ $(document).ready(function(){
         $("#upbk-link").val("");
         $("#upbk-file").val("");
     });
-    
+
     $("#enter-file").click(function(){
         $("#bk-link").slideUp();
         $("#bk-file").slideDown();
@@ -17,7 +17,7 @@ $(document).ready(function(){
         $("#bk-file").slideUp();
         $("#bk-link").slideDown();
     });
-    
+
     $("#up-bk-submit").click(function(){
         if(($("#upbk-name").val()=="") || ($("#upbk-course").val()=="") || (($("#upbk-link").val()=="") && ($("#upbk-file").val()==""))){
            $("#upbk-error").css('display','block');
@@ -25,26 +25,30 @@ $(document).ready(function(){
         else{
             $("#up-bk-submit").attr({'data-dismiss':"modal",'data-toggle':"modal",'data-target':"#upld-bk-thank"});
         }
-                            
+
     });
-    
+
     //Request
     $("#request-book").click(function(){
         $("#reqbk-name").val("");
         $("#reqbk-Aname").val("");
         $("#reqbk-course").val("");
     });
-    
+
     $("#req-bk-submit").click(function(){
         if(($("#reqbk-name").val()=="") || ($("#reqbk-course").val()=="") || ($("#reqbk-Aname").val()=="")){
            $("#reqbk-error").css('display','block');
            }
         else{
-            $("#req-bk-submit").attr({'data-dismiss':"modal",'data-toggle':"modal",'data-target':"#req-bk-thank"});
+            $.post("/u/user/book/request", {name: $("#reqbk-name").val(), course: $("#reqbk-course").val(), author: $("#reqbk-Aname").val()}, function(data, status){
+                // if (status == "success" && data == true) {
+                    $("#req-bk-submit").attr({'data-dismiss':"modal",'data-toggle':"modal",'data-target':"#req-bk-thank"});
+                // } else alert("Error occured.");
+            });
         }
-                            
+
     });
-    
+
 });
 
 // $("#up-bk-submit").attr('data-dismiss','modal');

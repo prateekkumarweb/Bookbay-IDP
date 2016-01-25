@@ -378,10 +378,7 @@
                 <div id="recommendedbooks"></div>
                 <script>
                 function recommendedbooks() {
-                  $.get('/u/user/recommendedbooks', function(data, status){console.log(data);
-
-                      console.log(data);
-                      $.each(data, function(i, v){
+                  $.get('/u/user/recommendedbooks', function(data, status){
                         var template = $('#recommendedbook').html();
                         Mustache.parse(template);
                         $("#recommendedbooks").html('');
@@ -389,8 +386,6 @@
                           var rendered = Mustache.render(template, {id: v.id, name: v.name, pic: v.pic});
                           $("#recommendedbooks").append(rendered);
                         });
-                      });
-
                   });
                 }
                   $(document).ready(function(){

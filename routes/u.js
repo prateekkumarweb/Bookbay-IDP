@@ -29,7 +29,7 @@ function isSignin(user, callback) {
 
 function sendEmail(toemail, sub, txt, htm, callback) {
     var mailOptions = {
-        from: "Bookbay at IITH <noreply@iith.co.in>", // sender address
+        from: "Bookbay - IITH <noreply@iith.co.in>", // sender address
         to: toemail, // list of receivers
         subject: sub, // Subject line
         text: txt, // plaintext body
@@ -271,7 +271,7 @@ router.post('/newpassword', function(req, res){
 });
 /*router.get('/email',  function(req, res) {
     var mailOptions = {
-        from: "Bookbay at IITH <noreply@bookbayatiith.com>", // sender address
+        from: "Bookbay - IITH <noreply@bookbayatiith.com>", // sender address
         to: "Help <pksingh1023@gmail.com>", // list of receivers
         subject: "Hello", // Subject line
         text: "Hello world", // plaintext body
@@ -596,7 +596,23 @@ router.get('/user/recommendedbooks', function(req, res){
   });
 });
 
+router.post('/user/book/request', function(req, res){
+    var name=req.body.name;
+    var course=req.body.course;
+    var author=req.body.author;
+    if (name != '' && course != '' && author != '') {
+        verifyProfile(req, function(a, b, user){
+          if (a&&b) {
+              sendEmail("noreply@iith.co.in", "Request Book", 'User : '+user.profilename+' Book : '+name+' Author : '+author+' Course : '+course, 'User : '+user.profilename+'<br>Book : '+name+'<br>Author : '+author+'<br>Course : '+course, function(q){
+                  if (q) res.send(true);
+                  else res.send(false);
+              });
+          } else res.send(false);
+        });
 
+    }
+    else res.send(false);
+});
 
 // Courses
 

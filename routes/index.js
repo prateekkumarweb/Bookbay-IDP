@@ -13,7 +13,7 @@ var smtpTransport = nodemailer.createTransport("SMTP", {
 });
 function sendEmail(toemail, sub, txt, htm, callback) {
     var mailOptions = {
-        from: "Bookbay at IITH <noreply@iith.co.in>", // sender address
+        from: "Bookbay - IITH <noreply@iith.co.in>", // sender address
         to: toemail, // list of receivers
         subject: sub, // Subject line
         text: txt, // plaintext body

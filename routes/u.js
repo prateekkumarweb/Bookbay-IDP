@@ -675,20 +675,7 @@ router.post('/user/book/upload', multer({ dest: 'public/uploads/' }).single('fil
     }
 });
 
-router.post('/futest', multer({ dest: 'userdata/uploads/' }).single('pic'), function(req, res) {
-  if (req.file.mimetype === 'image/jpeg') {
-    fs.rename(req.file.path, 'userdata/pic.jpg', function(err){
-      if (err) console.log(err);
-      else res.send('success');
-    });
-  } else {
-    fs.unlink(req.file.path, function(err){
-      if (err) console.log(err);
-      else res.send('Only jpg files can be uploaded');
-    });
 
-  }
-});
 // Courses
 
 // Add book in database

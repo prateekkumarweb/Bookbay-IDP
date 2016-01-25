@@ -14,7 +14,7 @@
     "express": "*",
     "express-session": "*",
     "morgan": "*",
-    "multer": "*",
+    "multer": "^1.1.0",
     "mysql": "*",
     "nodemailer": "^0.7.1",
     "proxy-agent": "^2.0.0",

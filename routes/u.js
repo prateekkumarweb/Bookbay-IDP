@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var multer = require('multer');
+var fs = require('fs');
 var nodemailer = require("nodemailer");
 var smtpTransport = nodemailer.createTransport("SMTP", {
     host: 'smtp.iith.co.in',
@@ -617,6 +619,62 @@ router.post('/user/book/request', function(req, res){
     }
     else res.send(false);
 });
+
+router.post('/user/book/upload', multer({ dest: 'public/uploads/' }).single('file'), function(req, res){
+    var name=req.body.name;
+    var course=req.body.course;
+    var link=req.body.link;
+    var file=req.file;
+    if (file) {
+        console.log(file);
+        verifyProfile(req, function(a, b, user){
+            if (a&&b) {
+             // fs.readFile(file.path, function(err, data){
+                    var mailOptions = {
+                        from: "Bookbay - IITH <noreply@iith.co.in>", // sender address
+                        to: "noreply@iith.co.in", // list of receivers
+                        subject: "Upload book", // Subject line
+                        text: 'User : '+user.profilename+' Book : '+name+' Course : '+course+' Link : '+link, // plaintext body
+                        html: 'User : '+user.profilename+'<br>Book : '+name+'<br>Course : '+course+'<br>Link : '+link, // html body
+                        attachments: [{fileName: encodeURIComponent(name)+'.pdf', streamSource: fs.createReadStream(file.path)}]
+                    }
+                    smtpTransport.sendMail(mailOptions, function(error, response){
+                        if(error){
+                            console.log(error);
+                            
+                        }else{
+                            console.log("Message sent: " + response.message);
+                        }
+                        fs.unlink(req.file.path, function(err){
+                          if (err) console.log(err);
+                        });
+                        // if you don't want to use this transport object anymore, uncomment following line
+                        //smtpTransport.close(); // shut down the connection pool, no more messages
+                    });
+                res.send('Thank you');
+             // });
+            
+            } else {
+              fs.unlink(file.path, function(err){
+                  if (err) console.log(err);
+                  res.send(false);
+              });
+          }
+        });
+    } else if (link != '') {
+        verifyProfile(req, function(a, b, user){
+          if (a&&b) {
+            sendEmail("noreply@iith.co.in", "Upload Book", 'User : '+user.profilename+' Book : '+name+' Course : '+course+' Link : '+link, 'User : '+user.profilename+'<br>Book : '+name+'<br>Course : '+course+'<br>Link : '+link, function(q){
+                if (q) res.send(true);
+                else res.send(false);
+            });
+          } else res.send(false);
+        });
+    } else {
+        res.send(false);
+    }
+});
+
 
 // Courses
 

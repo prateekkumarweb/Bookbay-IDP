@@ -150,7 +150,7 @@ router.post('/contact-us', function(req, res){
     if (e != '' && m != '') {
         conn.query("insert into contactus (email, message) values (?, ?)", [e, m], function(err){if (err) console.log(err)});
         //sendEmail("Bookbay Support<help@iith.co.in>", "Feedback from contact us form", "Email: "+e+" Message: "+m, "<h4>Email: "+e+" </h4><p>"+m+"</m>", function(){});
-        res.render("message", {title: 'Thank You!', body: 'We would be eager to help you.'})
+        res.render("message", {title: 'Thank You!', body: 'We will get back to you soon.'})
     }
 });
 

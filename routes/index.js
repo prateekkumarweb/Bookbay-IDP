@@ -134,6 +134,17 @@ router.get('/search', function(req, res) {
     });
 });
 
+router.get('/searchq', function(req, res) {
+    var q = req.query.q;
+    conn.query("select * from books where match (id, name, author, course) against (? in natural language mode)",[q] , function(err, rows, fields) {
+        
+          
+          res.send(rows);
+        
+    });
+});
+
+
 var clientIp = require('client-ip');
 router.get('/ip', function(req, res) {
 	 res.send(clientIp(req));

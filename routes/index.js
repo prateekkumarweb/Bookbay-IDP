@@ -120,6 +120,8 @@ router.get('/book', function(req, res) {
 router.get('/search', function(req, res) {
     var q = req.query.q;
     conn.query("select * from books where match (id, name, author, course) against (? in natural language mode)",[q] , function(err, rows, fields) {
+        if(err) rows = [];
+
         common.signInStatus(req, conn, function(st, u){
           if (req.query.page) {
               var page = req.query.page - 1;
@@ -136,11 +138,11 @@ router.get('/search', function(req, res) {
 
 router.get('/searchq', function(req, res) {
     var q = req.query.q;
-    conn.query("select * from books where match (id, name, author, course) against (? in natural language mode)",[q] , function(err, rows, fields) {
-        
-          
+    conn.query("select id, name, author, course, description, pic from books where match (id, name, author, course) against (? in natural language mode)",[q] , function(err, rows, fields) {
+
+            if(err) rows = [];
           res.send(rows);
-        
+
     });
 });
 

@@ -11,7 +11,11 @@ var conn = mysql.createConnection({
 });
 conn.connect(function(err){
   if (err) console.log(err)
-})
+});
+
+app.get('/', function(req, res) {
+	res.render('api');
+});
 
 app.get('/search', function(req, res) {
   var q = req.body.q;

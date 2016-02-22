@@ -28,7 +28,7 @@ app.get('/search', function(req, res) {
 
 app.get('/book', function(req, res) {
 	var id = req.query.id;
-	conn.query("select * from books where id=?", [id], function(err, rows, fields){
+	conn.query("select id, name, author, course, description from books where id=?", [id], function(err, rows, fields){
 			if (err) rows = [];
 			else res.send(rows);
 	});

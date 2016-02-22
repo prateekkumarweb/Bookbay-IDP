@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
 
 app.get('/search', function(req, res) {
   var q = req.body.q;
-  conn.query("select id, name, author, course, description from books where match (id, name, author, course) against (? in natural language mode)",[q] , function(err, rows, fields) {
+  conn.query("select id, name, author, course, description, url, pic from books where match (id, name, author, course) against (? in natural language mode)",[q] , function(err, rows, fields) {
 
           if(err) rows = [];
         res.send(rows);

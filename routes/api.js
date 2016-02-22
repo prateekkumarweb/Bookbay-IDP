@@ -25,4 +25,12 @@ app.get('/search', function(req, res) {
 /*app.get('/book/:id/comments', function(req, res) {
 
 });-*/
+
+app.get('/book', function(req, res) {
+	var id = req.query.id;
+	conn.query("select * from books where id=?", [id], function(err, rows, fields){
+			if (err) rows = [];
+			else res.send(rows);
+	});
+});
 module.exports = app;

@@ -355,6 +355,44 @@ router.get('/user', function(req, res){
 
 // stuff related to books
 
+
+router.get('/book/pic/:id/:name', function(req, res){
+  var id = req.params.id;
+  conn.query('select pic from books where id=?', [id], function(err, rows, fields){
+    if (err) res.send(404);
+    else if (rows.length === 0) {
+      res.send(404)
+    }
+    else {
+      var http = require('http');
+      var url = require('url');
+      var l = rows[0].pic;
+      var link = url.parse(l);
+      var options = {
+        method: 'GET',
+        host: link.host,
+        port: 80,
+        path: link.path
+      };
+
+      var request = http.request(options, function(response) {
+
+        response.on('data', function(chunk) {
+          res.write(chunk);
+        });
+
+        response.on('end', function() {
+              res.end();
+      });
+      });
+
+      request.end();
+
+    }
+  });
+
+});
+
 router.get('/book/download/:id/:name', function(req, res){
   var id = req.params.id;
   conn.query('select url from books where id=?', [id], function(err, rows, fields){

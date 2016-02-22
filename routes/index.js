@@ -93,13 +93,14 @@ function isMobile(req) {
 	}
 }
 
-
+/*
 router.get('/*', function(req, res, next){
     if (isMobile(req)) {
       res.send('You are using mobile. Mobile website is not ready. Switch to desktop.');
     }
     else next();
 });
+*/
 //
 
 router.get('/', function(req, res){
@@ -138,7 +139,7 @@ router.get('/search', function(req, res) {
 
 router.get('/searchq', function(req, res) {
     var q = req.query.q;
-    conn.query("select id, name, author, course, description, pic from books where match (id, name, author, course) against (? in natural language mode)",[q] , function(err, rows, fields) {
+    conn.query("select id, name, author, course, description from books where match (id, name, author, course) against (? in natural language mode)",[q] , function(err, rows, fields) {
 
             if(err) rows = [];
           res.send(rows);

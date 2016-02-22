@@ -19,14 +19,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 var users = require('./routes/users');
 var u = require('./routes/u');
+var api = require('./routes/api');
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+
+
 app.use('/', routes);
 app.use('/users', users);
 app.use('/u', u);
+app.use('/api', api);
 
 var serveStatic = require('serve-static');
 app.use(serveStatic(path.join(__dirname, 'public')));

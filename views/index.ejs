@@ -314,7 +314,7 @@ $(document).ready(function(){
       <div class="panel panel-default">
                   <div class="panel-body">
           <div class="col-lg-3">
-              <img src="<%= data.pic %>" width="240px" height="300px" class="img-thumbnail img-responsive" alt="Book image" style="margin:30px 0px;">
+              <img src="/u/book/pic/<%= data.id %>/<%= encodeURIComponent(data.name) %>.jpg" width="240px" height="300px" class="img-thumbnail img-responsive" alt="Book image" style="margin:30px 0px;">
               <a id="showcomments"><span class="badge" id="noofcomments"></span>&nbsp;<b>Comments</b></a>
               <script>$(document).ready($('#showcomments').click(function(){$('#comments').slideToggle("slow")}));</script>
           </div>

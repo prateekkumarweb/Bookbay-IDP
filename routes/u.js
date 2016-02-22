@@ -444,6 +444,64 @@ router.get('/book/download/:id/:name', function(req, res){
 
 });
 
+
+
+router.get('/api/book/download/:id/:name', function(req, res){
+  var id = req.params.id;
+  conn.query('select url from books where id=?', [id], function(err, rows, fields){
+    if (err) res.send(404);
+    else if (rows.length === 0) {
+      res.send(404)
+    }
+    else {
+      var http = require('http');
+      var url = require('url');
+      var l = rows[0].url;
+      var link = url.parse(l);
+      var options = {
+        method: 'GET',
+        host: link.host,
+        port: 80,
+        path: link.path
+      };
+      var data = [];
+
+      var request = http.request(options, function(response) {
+
+        response.on('data', function(chunk) {
+          //res.write(chunk);
+          data.push(chunk);
+        });
+
+        response.on('end', function() {
+            if (req.signedCookies.user) {
+              verifyProfile(req, function(a, b, user){
+                  if (a && b) {
+                      var username = user.profilename.toUpperCase();
+                      var bookid = id;
+                      conn.query("insert into bookdownloads (bookid, username) values (?, ?)", [bookid, username], function(err, rows, fields){
+                          download();
+                      });
+                  } else download();
+              });
+          } else download();
+          function download() {
+              res.send(Buffer.concat(data));
+          }
+
+      });
+      });
+
+      request.end();
+
+    }
+  });
+
+});
+
+
+
+
 router.get('/user/books/recent', function(req, res){
   verifyProfile(req, function(a, b, user){
       if (a && b) {

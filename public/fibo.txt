@@ -1,0 +1,88 @@
+#include <iostream>
+
+using namespace std;
+
+/*
+ *Program to calculate first 10 fibanacci numbers starting from 0 using classes and operator overloading.
+ *The pseudocode for program is below :
+ *    fibonacci(n)
+ *        if (n == 0) return 0;
+ *        if (n == 1) return 1;
+ *        Matrix M = Array[[1, 1], [1, 0]];
+ *        return matrix_power(M, n-1)[0][0];
+ *Time Complexity = O(log n).
+ */
+
+class Matrix
+{
+public:
+	Matrix()
+		{
+			a11 = 0;
+			a12 = 0;
+			a21 = 0;
+			a22 = 0;
+		}
+	Matrix(int a, int b, int c, int d)
+		{
+			a11 = a;
+			a12 = b;
+			a21 = c;
+			a22 = d;
+		}
+	Matrix operator*(Matrix b)
+		{
+			Matrix p(this->a11*b.a11 + this->a12*b.a21, this->a11*b.a12 + this->a12*b.a22, this->a21*b.a11 + this->a22*b.a21, this->a21*b.a12 + this->a22*b.a22);
+			return p;
+		}
+	void print()
+		{
+			cout << a11 << " " << a12 << endl << a21 << " " << a22 << endl;
+		}
+	Matrix operator^(int p)
+		{
+			Matrix A = *this;
+			for (int i=1; i<p; i++)
+			{
+				A = A * *this;
+			}
+			return A;
+		}
+	int * operator[](int p)
+		{
+			int *a = new int[2];
+			if (p == 0)
+			{
+				a[0] = a11;
+				a[1] = a12;
+				return a;
+			}
+			if (p == 1)
+			{
+				a[0] = a21;
+				a[1] = a22;
+				return a;
+			}
+			return NULL;
+		}
+private:
+	int a11, a12, a21, a22;
+};
+
+int fibo(int n)
+{
+	if (n == 0) return 0;
+	if (n == 1) return 1;
+	Matrix M(1, 1, 1, 0);
+	Matrix res = M^(n-1);
+	return res[0][0];
+}
+
+int main()
+{
+    for (int i=0; i<11; i++)
+	{
+		cout << fibo(i) << endl;
+	}
+    return 0;
+}
